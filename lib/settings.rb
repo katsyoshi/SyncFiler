@@ -1,8 +1,9 @@
 #!/usr/bin/env ruby
 # -*- coding: utf-8 -*-
 require 'yaml'
-require 'pp'
+require File.dirname(__FILE__)+'/syncfiler.rb'
 
+module SyncFiler
 class Settings
 	:private 
 	ext = File.expand_path( "~/settings.yaml" )
@@ -10,4 +11,5 @@ class Settings
 	SETTINGS = YAML.load(str)   # パースする
 	:pulic
 	SETTINGS               
+end
 end

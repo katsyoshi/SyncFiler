@@ -1,8 +1,7 @@
 #!/usr/bin/env ruby
 # -*- coding: utf-8 -*-
-require 'msgpack/rpc'
-require './settings.rb'
-require 'zlib'
+require File.dirname(__FILE__)+'/syncfiler.rb'
+module SyncFiler
 class FileSubmissionClient
 	def initialize( addr, port=9090)
 		@client=MessagePack::RPC::Client.new(addr, port)
@@ -18,13 +17,16 @@ class FileSubmissionClient
 	end 
 
 	def comp_send_file(name)
-		disk = Zlib::Deflate.deflate(File.read(name))
 		disk.to_msgpack
 		c.call(:comp_file_push, disk,name)
 	end
 
+	def get_file_list
+		@client.get_file_list
+	end
+	
 	def connection_cut
 		@client.close
 	end
 end
-
+end
