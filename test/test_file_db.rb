@@ -9,28 +9,24 @@ class TC_FileDB < Test::Unit::TestCase
 	def teardown
 		@db.close # DB切断 
 	end
-
 	def test_get_list
 		assert( @db.get_list("test"), "読み取れなかった" )
 	end
-	
 	def test_write
 		txt = "test.txt"
-		ary = {:name => txt, :size => File.size(txt), 
-			:date => File.ctime( txt ), :visible => 1}
-		assert( @db.write( 'test', ary ), "書き込めない!" )
+		hash = {:name => txt, :size => File.size(txt), 
+			:date => File.ctime( txt ), :visible => File.stat(txt).readable?}
+		assert( @db.write( 'test', hash ), "書き込めない!" )
 	end
-
+	
+	def test_get_file_info
+		file = "test.txt"
+		assert( @db.get_file_info(file), "そんなファイル内ぞ" )
+	end
+	
 	def test_create_table
 		txt = "test"
 		assert( @db.create_table( txt ), "作れんぞ" )
 	end
-
-	:private
-	def test_destroy_table
-		txt = "test"
-		assert( @db.destroy_table( txt ), "こわせんぞ" )
-	end
-	
 end
 

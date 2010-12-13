@@ -1,4 +1,21 @@
-クライアントソフトの作成
-ファイルの分割送信
-通信の暗号化？
-スレッド？
+en:
+  must:
+    send divided file
+    support file directory
+    user authorization
+  needs:
+      GUI client soft
+  maybe:  
+    cyript comminication 
+    threading
+
+ja:
+  必要:
+    ファイルの分割送信
+    ディレクトリ構造サポート
+    ゆーざ認証
+  誰か作って:
+    GUIクライアントソフトの作成
+  そのうち対応:
+    通信の暗号化
+    スレッド化

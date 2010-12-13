@@ -2,14 +2,14 @@
 # -*- coding: utf-8 -*-
 
 require File.dirname(__FILE__)+'/syncfiler.rb'
-require File.dirname(__FILE__)+'/settings.rb'
+# require File.dirname(__FILE__)+'/settings.rb'
 module SyncFiler
 class FileSubmissionServer 
 	KB = 1024
 	MB = KB * KB
 	GB = MB * KB
-	MAX_SIZE = SyncFiler::Settings::SETTINGS['max_file_size']
-	DEF_DIR = SyncFiler::Settings::SETTINGS['default']
+	# MAX_SIZE = SyncFiler::Settings::SETTINGS['max_file_size']
+	# DEF_DIR = SyncFiler::Settings::SETTINGS['default']
 
 	def initialize(port=9090)
 		@read_files = Hash.new
