@@ -7,10 +7,11 @@ class SyncFiler::Settings
 	def initialize(path="~/.syncfiler.d")
 		@file = File.expand_path path
 	end
-	
+
 	def read()
 		str = File.read(@file+'/settings.yaml')
 		@settings = YAML.load str
+		# str.close
 	end
 	
 	def exist?(path="~/.syncfiler.d")

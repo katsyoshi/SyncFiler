@@ -18,15 +18,17 @@ class TC_FileDB < Test::Unit::TestCase
 			:date => File.ctime( txt ), :visible => File.stat(txt).readable?}
 		assert( @db.write( 'test', hash ), "書き込めない!" )
 	end
-	
 	def test_get_file_info
 		file = "test.txt"
 		assert( @db.get_file_info(file), "そんなファイル内ぞ" )
 	end
-	
 	def test_create_table
 		txt = "test"
 		assert( @db.create_table( txt ), "作れんぞ" )
+	end
+
+	def test_migration
+		assert( @db.migration(src,mig), "移行できない!?" )
 	end
 end
 
