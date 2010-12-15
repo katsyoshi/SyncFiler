@@ -8,24 +8,35 @@ class SyncFiler::Settings
 		@file = File.expand_path path
 	end
 
-	def read()
-		str = File.read(@file+'/settings.yaml')
+	def read(file="client.yaml")
+		str = File.read(@file+"/#{file}")
 		@settings = YAML.load str
-		# str.close
+	rescue => e
+		return e
 	end
 	
-	def exist?(path="~/.syncfiler.d")
-		exp = File.expand_path path
-		Dir.mkdir(exp) unless Dir.exist? exp
-		file = exp+'/settings.yaml'
-		touch_file(file) unless File.exist? file
+	def exist?(path=@file)
+		Dir.mkdir(path) unless Dir.exist? path
 	end
 
-	def touch_file(path, hash = {'default' => "SyncFiles", 
+	def write_setting_file(path, hash = {'default' => "SyncFiles", 
 									 'max_file_size' => 10, 'port_no' => 9090} )
+		p = @file + "/" + path
 		h = hash
-		fw = File.open(path,'w')
+		fw = File.open(p,'w')
 		fw.write YAML.dump h
 		fw.close
+	end
+	
+	def write_client(client, ch={'default' => "SyncFiles", 
+										 'server_addr' => nil, 
+										 'port_no' => 9090})
+		write_setting_file(client , ch)
+	end
+
+	def write_server(server, sh={'default' => "SyncFiles", 
+										 'port_no' => 9090}
+										 )
+		write_setting_file(server,sh)
 	end
 end
