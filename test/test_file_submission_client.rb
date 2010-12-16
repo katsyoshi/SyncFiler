@@ -1,13 +1,36 @@
 #!/usr/bin/env ruby
+# -*- coding: utf-8 -*-
 require File.dirname(__FILE__)+'/test_helper.rb'
 
-class TestClient < Test::Unit::TestCase
+class TC_FileSubmissionClient < Test::Unit::TestCase
+	# class Server
+	@svr = MessagePack::RPC::Server.new
+	@svr.listen '0.0.0.0', 9090, SyncFiler::FileSubmissionServer.new
+	
+	def start_server
+		Thread.start do
+			@svr.run
+			@svr.close
+		end
+	end
+	
 	def setup
-		@cl = SyncFiler::FileSubmissionClient.new '192.168.168.66', 9090
+		@cl = SyncFiler::FileSubmissionClient.new 
+		start_server
 	end
 
 	def teardown
-		@cl.connection_cut
+		# @th.join
+		# @svr.close
+	end
+	
+	def test_connect_server
+		assert( @cl.connect_server, "NG" )
+	end
+
+	def test_disconnect_server
+		#p @cl
+		#	assert( @cl.disconnect_server, "NG" )
 	end
 
 	def test_get_file_list
@@ -23,7 +46,11 @@ class TestClient < Test::Unit::TestCase
 	end
 	
 	def test_get_file_info
-		assert( @cl.get_db, "NG" )
+		name = "test.db"
+		assert( @cl.get_file_info(name), "NG" )
 	end
 
+	def test_get_server_info
+		assert( @cl.get_server_info, "NG" )
+	end
 end

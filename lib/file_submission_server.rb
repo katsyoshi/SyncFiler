@@ -13,6 +13,9 @@ class SyncFiler::FileSubmissionServer
 		@svr = {:addr => addr, :port => port}
 	end
 
+	def close
+		@svr = nil
+	end
 	## FileSubmissionServer#send_div_file
 	# send silialized div file
 	# silializeされた分割ファイルを送信
@@ -41,8 +44,12 @@ class SyncFiler::FileSubmissionServer
 		@settings = s.read
 	end
 	
-	def get_file_list()
-		db = SyncFiler::FileDB.new
+	def get_file_list(tbl_name, db_name="~/.syncfiler.d/file_info.db")
+		dbn = File.expand_path( db_name )
+		db = SyncFiler::FileInfoDB.new(dbn)
+		list = db.get_file_list(tbl_name)
+		db.close
+		list
 	end
 	
 	def get_file_info(name)

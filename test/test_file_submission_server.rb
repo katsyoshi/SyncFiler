@@ -7,9 +7,9 @@ class TC_FileSubmissionServer < Test::Unit::TestCase
 		@srv = SyncFiler::FileSubmissionServer.new
 	end
 	
- 	# def teardown 
-	# 	@srv.close
-	# end
+	def teardown 
+	 	@srv.close
+	end
 	
 	def test_get_settings
 		assert( @srv.get_settings, "NG" )
@@ -32,5 +32,9 @@ class TC_FileSubmissionServer < Test::Unit::TestCase
 		mb = SyncFiler::FileSubmissionServer::MB
 		f = File.read("test.txt",mb).to_msgpack
 		assert( !@srv.recieve_div_file("test.txt", f, 'tmp'), "NG" )
+	end
+	def test_get_file_list
+		p @srv.get_file_list("test")
+		assert @srv.get_file_list("test"), "NG"
 	end
 end
