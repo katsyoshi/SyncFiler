@@ -1,42 +1,50 @@
 # -*- coding: utf-8 -*-
 require File.dirname(__FILE__)+'/test_helper.rb'
 
-class TC_FileInfoDB < Test::Unit::TestCase
-	DB=File.expand_path("~/.syncfiler.d/")+"/file_info.db"
+class TC_FileInfo < Test::Unit::TestCase
 	def setup
-		@db = SyncFiler::FileInfoDB.load_configurations
+		@db=SyncFiler::FileSubmissionServer.new
+		@db.connect_file_db
 	end
+	
 	def teardown
-		@db.close # DB切断 
+	end
+
+	def test_create_table
+		# @db.connect_file_db
+		assert @db.create_table, "NG"
 	end
 	
-	# def test_get_list
-	# 	assert( @db.get_list("test"), "読み取れなかった" )
-	# end
+	def test_connect_file_db
+		assert @db.connect_file_db, "NG"
+	end
 	
-	# def test_write
-	# 	txt = "test.txt"
-	# 	hash = {:name => txt, :size => File.size(txt), 
-	# 		:date => File.ctime( txt ), :visible => File.stat(txt).readable?}
-	# 	assert( @db.write( 'test', hash ), "書き込めない!" )
-	# end
+	def test_drop_table
+		assert @db.drop_table, "NG"
+	end
 
-	# def test_get_file_info
-	# 	file = "test.txt"
-	# 	assert( @db.get_file_info(file), "そんなファイル内ぞ" )
-	# end
+	def test_write_table
+		assert @db.write_table, "NG"
+	end
+	def test_get_db_info
+		assert @db.get_db_info, "NG"
+	end
+
+	def test_get_file_list
+		assert @db.get_file_list, "NG"
+	end
 	
-	# def test_get_file_list
-	# 	assert( @db.get_file_list("test"), "are" )
-	# end
+	def test_write_file_info
+		dbup
+		assert @db.write_file_info, "NG"
+	end	
 
-	# def test_create_table
-	# 	txt = "test"
-	# 	assert( @db.create_table( txt ), "作れんぞ" )
-	# end
+	def test_search_db
+		assert @db.search_db, "NG"
+	end
 
-	# def test_migration
-	# 	# assert( @db.migration(src,mig), "移行できない!?" )
-	# end
+	def test_drop_table
+		assert @db.drop_table, "NG"
+	end
 end
 

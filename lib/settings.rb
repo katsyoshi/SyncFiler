@@ -1,14 +1,14 @@
 #!/usr/bin/env ruby
 # -*- coding: utf-8 -*-
 require 'yaml'
-require File.dirname(__FILE__)+'/syncfiler.rb'
+require File.dirname(__FILE__)+'/../syncfiler.rb'
 
-class SyncFiler::Settings
+class SyncFiler::Settings::Settings
 	# def initialize(path="~/.syncfiler.d")
 	# 	@file = File.expand_path path
 	# end
 
-	def self.read(file="client.yaml")
+	def self.read(file)
 		@config = YAML.load( File.read(File.expand_path(file)) )
 	rescue => e
 		return e
@@ -37,9 +37,12 @@ class SyncFiler::Settings
 													'port_no' => 9090} )
 		write_setting_file(server,sh)
 	end
+
 	def self.write_db(database, 
-										db={'adapter' => 'sqlite3', 
-											  'database' => database} )
+										db={:adapter => 'sqlite3', 
+											:database => '~/.syncfiler.d/file_info.db'} )
+		db[:database] = File.expand_path db[:database]
 		write_setting_file(database, db)
 	end
+	
 end

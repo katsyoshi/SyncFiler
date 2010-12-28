@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 # -*- coding: utf-8 -*-
-require File.dirname(__FILE__)+'/syncfiler.rb'
+require File.dirname(__FILE__)+'/../syncfiler.rb'
 # require 'zlib'
 
 class SyncFiler::FileSubmissionServer
@@ -9,12 +9,12 @@ class SyncFiler::FileSubmissionServer
 	MB = KB * KB
 	GB = MB * KB
 	
-	def initialize(port=9090, block=BLOCK,settings="~/.syncfiler.d/server.yaml")
+	def initialize(port=9090, block=BLOCK,settings="~/.syncfiler.d/server.yml")
 		d = File.expand_path(settings)
 		hs = {'default' => "SyncFiles", 'port_no' => port}
 		SyncFiler::Settings.write_server(d,hs) unless File.exist? d
-		@db_settings=SyncFiler::FileInfoDB::load_configurations
-		@conf=SyncFiler::Settings.read( d )
+		@db_settings=SyncFiler::FileInfo::load_configurations
+		@conf=SyncFiler::Settings.read(d)
 		@vol={:kb => KB,:mb => MB,:mb => GB, :block => block}
 	end
 	
@@ -66,39 +66,29 @@ class SyncFiler::FileSubmissionServer
 		nil
 	end
 
-	def send_file_hash(name)
-		File.open
-	end
-
 	:private
 	def vol
 		@vol
 	end
-	
-	def db_up
-		@db=SyncFiler::FileInfoDB.establish_connection(@db_settings)
+
+	def connect_file_db
+		SyncFiler::FileInfo.establish_connection(@db_settings)
 	end
 	
-	def get_settings()
-		s = SyncFiler::Settings.new
-		s.exist?
-		@settings = s.read
+	def create_table
+		FileInfo.up
 	end
-	
-	def mkdb(dbsettings="~/.syncfiler.d/file_info.db")
-		db=SyncFiler::FileInfoDB::Base.load_configurations(dbsettings)
+
+	def write_table(file)
+		@db = SyncFiler::FileInfo.new
+		file.each do |k, v|
+			@db.call :k, v
+		end 
+		@db.save
 	end
-	
-	def get_file_list(tbl_name, hash={}, db_name="~/.syncfiler.d/file_info.db")
-		dbn = File.expand_path( db_name )
-		db = SyncFiler::FileInfoDB::Base.load_configurations if hash == {}
-		list = db.get_file_list(tbl_name)
-		db.close
-		list
-	end
-	
-	def get_file_info(name)
-		File.stat name
+
+	def drop_table
+		FileInfo.down
 	end
 end
 # svr = MessagePack::RPC::Server.new

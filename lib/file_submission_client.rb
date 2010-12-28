@@ -1,10 +1,10 @@
 #!/usr/bin/env ruby
 # -*- coding: utf-8 -*-
-require File.dirname(__FILE__)+'/syncfiler.rb'
+require File.dirname(__FILE__)+'/../syncfiler.rb'
 
 class SyncFiler::FileSubmissionClient
 	def initialize()
-		dir = File.expand_path( "~/.syncfiler.d/client.yaml" )
+		dir = File.expand_path( "~/.syncfiler.d/client.yml" )
 		c = SyncFiler::Settings.new 
 		c.write_client unless File.exist? dir
 		@setting=c.read
