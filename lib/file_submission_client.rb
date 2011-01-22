@@ -1,8 +1,9 @@
 #!/usr/bin/env ruby
 # -*- coding: utf-8 -*-
-require File.dirname(__FILE__)+'/../syncfiler.rb'
-
-class SyncFiler::FileSubmissionClient
+# require File.dirname(__FILE__)+'/syncfiler.rb'
+module SyncFiler
+module FileSubmission
+class Client
 	def initialize()
 		dir = File.expand_path( "~/.syncfiler.d/client.yml" )
 		c = SyncFiler::Settings.new 
@@ -35,4 +36,6 @@ class SyncFiler::FileSubmissionClient
 	
 	def send_div_file name
 	end
+end
+end
 end

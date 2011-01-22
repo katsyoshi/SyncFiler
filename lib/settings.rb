@@ -1,9 +1,10 @@
 #!/usr/bin/env ruby
 # -*- coding: utf-8 -*-
 require 'yaml'
-require File.dirname(__FILE__)+'/../syncfiler.rb'
+# require File.dirname(__FILE__)+'/syncfiler.rb'
 
-class SyncFiler::Settings::Settings
+module SyncFiler
+class Settings
 	# def initialize(path="~/.syncfiler.d")
 	# 	@file = File.expand_path path
 	# end
@@ -45,4 +46,5 @@ class SyncFiler::Settings::Settings
 		write_setting_file(database, db)
 	end
 	
+end
 end

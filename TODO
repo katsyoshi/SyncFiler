@@ -1,21 +1,19 @@
 en:
   must:
-    send divided file
-    support file directory
-    user authorization
+    support directory
+
   needs:
-      GUI client soft
+    GUI client soft
   maybe:  
     cyript comminication 
     threading
-
+    user authorization
 ja:
   必要:
-    ファイルの分割送信
     ディレクトリ構造サポート
-    ゆーざ認証
   誰か作って:
     GUIクライアントソフトの作成
   そのうち対応:
     通信の暗号化
     スレッド化
+    ゆーざ認証

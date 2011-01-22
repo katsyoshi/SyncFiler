@@ -1,9 +1,9 @@
 #!/usr/bin/env ruby
 # -*- coding: utf-8 -*-
-require File.dirname(__FILE__)+'/../syncfiler.rb'
-# require 'zlib'
-
-class SyncFiler::FileSubmissionServer
+# require File.dirname(__FILE__)+'/syncfiler.rb'
+module SyncFiler
+module FileSubmission
+class Server
 	KB = 1024
 	BLOCK = 8 * KB
 	MB = KB * KB
@@ -13,7 +13,7 @@ class SyncFiler::FileSubmissionServer
 		d = File.expand_path(settings)
 		hs = {'default' => "SyncFiles", 'port_no' => port}
 		SyncFiler::Settings.write_server(d,hs) unless File.exist? d
-		@db_settings=SyncFiler::FileInfo::load_configurations
+		@db_settings=SyncFiler::DB::FileInfo::load_configurations
 		@conf=SyncFiler::Settings.read(d)
 		@vol={:kb => KB,:mb => MB,:mb => GB, :block => block}
 	end
@@ -72,24 +72,29 @@ class SyncFiler::FileSubmissionServer
 	end
 
 	def connect_file_db
-		SyncFiler::FileInfo.establish_connection(@db_settings)
+		# SyncFiler::DB::FileInfo.establish_connection(@db_settings)
+		SyncFiler::DB::FileInfoDB.connect_file_db(@db_settings[:database])
 	end
 	
 	def create_table
-		FileInfo.up
+		# SyncFiler::DB::FileInfo.up
+		SyncFiler::DB::FileInfoDB.up
 	end
 
 	def write_table(file)
-		@db = SyncFiler::FileInfo.new
-		file.each do |k, v|
-			@db.call :k, v
-		end 
-		@db.save
+		# @db = SyncFiler::DB::FileInfo.new
+		# file.each do |k, v|
+		# 	@db.call :k, v
+		# end 
+		# @db.save
 	end
 
 	def drop_table
-		FileInfo.down
+		# SyncFiler::DB::FileInfo.down
+		SyncFiler::DB::FileInfoDB.down
 	end
+end
+end 
 end
 # svr = MessagePack::RPC::Server.new
 # svr.listen '0.0.0.0', 9090, FileSubmissionServer.new
