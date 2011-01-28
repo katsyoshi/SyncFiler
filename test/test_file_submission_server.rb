@@ -3,21 +3,24 @@
 require File.dirname(__FILE__)+'/test_helper'
 
 class TC_FileSubmissionServer < Test::Unit::TestCase
-	FILE="file.dd"
+	SEND_FILE="file.dd"
 	def setup
-		@srv = SyncFiler::FileSubmissionServer.new
-		@file=FILE
+		@srv = SyncFiler::FileSubmission::Server.new
+		@file=SEND_FILE
 	end
 	
-	# def teardown 
-	#  	@srv.close
-	# end
+	def teardown 
+		@srv.close
+	end
 	
 	def test_send_file
+		s = Time.now
 		assert(@srv.send_file(@file, 0), "NG")
+		puts (Time.now - s).to_s + "s"
 	end
 	
 	def test_recieve_file
+		s = Time.now
 		size = File.stat(@file).size/@srv.vol[:block]
 		th = Array.new
 		(0..size).each do |x| 
@@ -28,6 +31,7 @@ class TC_FileSubmissionServer < Test::Unit::TestCase
 		end
 		diff = open(@file).readlines - open("rev.dd").readlines
 		assert(diff.empty?, "NG")
+		puts (Time.now - s ).to_s + "s"
 	end
 	
 	def test_send_server_vol
