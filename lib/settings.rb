@@ -10,7 +10,7 @@ class Settings
 	# end
 
 	def self.read(file)
-		@config = YAML.load( File.read(File.expand_path(file)) )
+		return YAML.load( File.read(File.expand_path(file)) )
 	rescue => e
 		return e
 	end

@@ -5,25 +5,33 @@ require File.dirname(__FILE__)+'/test_helper.rb'
 class TC_FileSubmissionClient < Test::Unit::TestCase
 	# class Server
 	
-	def start_server
-		@svr = MessagePack::RPC::Server.new
-		@svr.listen '0.0.0.0', 9090, SyncFiler::FileSubmission::Server.new
-		Thread.start do
-			@svr.run
+	def setup
+		# if !@srv
+		@srv = MessagePack::RPC::Server.new 
+		@srv.listen( '0.0.0.0', 9090, SyncFiler::FileSubmission::Server.new )
+		# end
+		@th = Thread.start do
+			@srv.run
 			@srv.close
 		end
-	end
-	
-	def setup
 		@cl = SyncFiler::FileSubmission::Client.new 
 		@cl.connect_server
-		start_server
+		p @cl.client
 	end
+	
+	# def setup
+	# 	start_server
+	# end
 
 	def teardown
 		# @th.join
 		# @svr.close
+		# p @srv
 		@cl.close
+		@cl = nil
+		@srv = nil
+		# @srv.stop
+		# @cl.disconnect_server
 	end
 	
 	def test_connect_server
@@ -31,8 +39,8 @@ class TC_FileSubmissionClient < Test::Unit::TestCase
 	end
 
 	def test_disconnect_server
-		#p @cl
-		#	assert( @cl.disconnect_server, "NG" )
+		# p @cl
+		# assert( @cl.disconnect_server, "NG" )
 	end
 
 	def test_get_file_list

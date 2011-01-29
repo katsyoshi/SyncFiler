@@ -5,22 +5,35 @@ module SyncFiler
 module FileSubmission
 class Client
 	def initialize( settings = "~/.syncfiler.d/client.yml" )
-		dir = File.expand_path( settings )
-		SyncFiler::Settings.write_client(dir) unless File.exist? dir
-		@setting=SyncFiler::Settings.read dir
+		d = File.expand_path( settings )
+		SyncFiler::Settings.write_client(d) unless File.exist? d
+		@setting=SyncFiler::Settings.read(d)
 		# @client=nil
 	end
 	
+	def setting
+		@setting
+	end
+	
+	def client
+		@client
+	end
+	
+	def timeout=(time)
+		@client.timeout=time
+	end
+		
 	def connect_server
 		addr = @setting["server_addr"]
 		port = @setting["port_no"].to_i
-		@clinet = MessagePack::RPC::Client.new(addr, port)
+		@client = MessagePack::RPC::Client.new(addr, port)
 	end
 	
-	def disconnect_server
+	def close
 		@client.close
 	end
-	
+	alias :disconnect_server :close 
+
 	def get_file_info( file_name )
 		@client.call( :get_file_info, file_name )
 	end
