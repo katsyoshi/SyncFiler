@@ -4,11 +4,13 @@
 module SyncFiler
 module FileSubmission
 class Client
-	def initialize( settings = "~/.syncfiler.d/client.yml" )
-		d = File.expand_path( settings )
-		SyncFiler::Settings.write_client(d) unless File.exist? d
-		@setting=SyncFiler::Settings.read(d)
-		# @client=nil
+	def initialize(client = {'default' => '~/SyncFiles', 
+									 'server_addr' => nil, 'port_no' => 9090, 'host'=> nil })
+		@setting=SyncFiler::Settings.read
+		if @settings['client'].nil?
+			@settings['client'] = client
+			SyncFiler::Settings.write_setting_file('client', client)
+		end
 	end
 	
 	def setting
@@ -34,19 +36,23 @@ class Client
 	end
 	alias :disconnect_server :close 
 
+	def get_server_info
+		@client.call( :get_server_info )
+	end
 	def get_file_info( file_name )
 		@client.call( :get_file_info, file_name )
 	end
 	
-	def get_file_list() #  db_name )
-		@client.call( :get_file_list)# db_name )
+	def get_file_list() 
+		@client.call( :get_file_list ) 
 	end
 	
-	def recieve_div_file name
-		@client.call( :send_div_file, name )
+	def recieve_file( name, pos )
+		@client.call( :send_file, name, pos )
 	end
 	
-	def send_div_file name
+	def send_file( name, pos )
+		@client.call( :recieve_file, name, pos )
 	end
 end
 end

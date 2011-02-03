@@ -10,14 +10,16 @@ class Server
 	MB = KB * KB
 	GB = MB * KB
 	
-	def initialize(port=9090, block=BLOCK,settings="~/.syncfiler.d/server.yml")
-		d = File.expand_path(settings)
-		hs = {'default' => "SyncFiles", 'port_no' => port}
-		SyncFiler::Settings.write_server(d,hs) unless File.exist? d
-		# @db_settings=SyncFiler::DB::FileInfo::load_configurations
-		@db=SyncFiler::DB::FileInfoDB.new
-		@db_info = @db.get_db_info
-		@conf=SyncFiler::Settings.read(d)
+	def initialize(port=9090, block=BLOCK)
+		@conf=SyncFiler::Settings.read
+	rescue e 
+		hs = {'default' => "SyncFiles", 'port_no' => port, 
+			'host' => Socket.gethostname}
+		SyncFiler::Settings.write_setting_file("server",hs)
+		@conf=SyncFiler::Settings.read
+	ensure
+		# @db=SyncFiler::DB::FileInfoDB.new
+		# @db_info = @db.get_db_info
 		@vol={:kb => KB,:mb => MB,:mb => GB, :block => block}
 	end
 
@@ -25,22 +27,13 @@ class Server
 		nil
 	end
 	
-	def db_up
-		@db.connect_file_db
-		@db.create_table
-	end
-	
-	def db_down
-		@db.drop_table
-		@db.disconnect_file_db
-	end
 	# val
 	def send_server_vol
 		@vol
 	end
 
 	# server settings
-	def send_server_conf
+	def send_server_info
 		@conf
 	end
 
@@ -86,23 +79,6 @@ class Server
 	:private
 	def vol
 		@vol
-	end
-
-	def connect_file_db
-		@db.connect_file_db
-	end
-	
-	def create_table
-		@db.create_table
-	end
-
-	def write_table(file)
-		@db.write_file_info
-	end
-
-	def drop_table
-		# SyncFiler::DB::FileInfo.down
-		SyncFiler::DB::FileInfoDB.down
 	end
 end
 end 

@@ -1,42 +1,37 @@
 #!/usr/bin/env ruby
 # -*- coding: utf-8 -*-
 require File.dirname(__FILE__)+'/test_helper.rb'
-
+require 'socket'
 class TC_Settings < Test::Unit::TestCase
 	def setup
-		@c = "client.yaml"
-		@s = "server.yaml"
-		@d = "database.yaml"
+		@c = {'server' => 'localhost', 'port_no' => 9090, 
+			'host' => Socket.gethostname }
+		@s = {'default' => 'SyncFiles', 'port_no' => 9090, 
+			'host' => Socket.gethostname }
+		@d = {'database' => '~/.syncfiler.d/file_info.db'}
+		@file = './settings.yml'
 	end
 
 	def teardown
-		File.delete(@c) if File.exist?(@c)
-		File.delete(@s) if File.exist?(@s)
-		File.delete(@d) if File.exist?(@d)
+		File.delete(@file) if File.exist?(@file)
 	end
 
-	# def test_exist?()
-	# 	assert_nil @settings.exist?, "ぢレク鳥がない"
-	# end
-
 	def test_read
-		SyncFiler::Settings.write_db @c
-		SyncFiler::Settings.write_db @s
-		SyncFiler::Settings.write_db @d
-		assert_instance_of(Hash, SyncFiler::Settings.read(@c), "COK" )
-		assert_instance_of(Hash, SyncFiler::Settings.read(@s), "SOK" )
-		assert_instance_of(Hash, SyncFiler::Settings.read(@d), "DOK" )
+		SyncFiler::Settings.write_setting_file "client", @c, @file
+		SyncFiler::Settings.write_setting_file "server", @s, @file
+		SyncFiler::Settings.write_setting_file "database", @d, @file
+		assert_instance_of(Hash, SyncFiler::Settings.read(@file), "OK" )
 	end
 
 	def test_write_client
-		assert !SyncFiler::Settings.write_client(@c), "NG"
+		assert !SyncFiler::Settings.write_setting_file("client",@c,@file), "NG"
 	end
 
 	def test_write_server
-		assert !SyncFiler::Settings.write_server(@s), "NG"
+		assert !SyncFiler::Settings.write_setting_file("server",@s, @file), "NG"
 	end
 	
 	def test_write_database
-		assert !SyncFiler::Settings.write_db(@d), "NG"
+		assert !SyncFiler::Settings.write_setting_file("database",@d, @file), "NG"
 	end
 end

@@ -3,17 +3,16 @@
 # require File.dirname(__FILE__)+'/../syncfiler'
 # require 'rails'
 # require 'active_record'
-require 'sqlite3'
-module SyncFiler
-module DB
-class FileInfoDB 
+require File.dirname(__FILE__)+'/database'
+class SyncFiler::DB::FileInfo
+	# include SyncFiler::DB
 	def initialize(settings="~/.syncfiler.d/database.yaml")
 		epath=File.expand_path settings
 		@info=SyncFiler::Settings.read epath
 	end
 	def connect_file_db( path="~/.syncfiler.d/file_info.db", option={} )
 		ex_path = File.expand_path( path )
-		@db=SQLite3::Database.new(ex_path,option)
+		@db=create_table(ex_path, option)
 	end
 	def get_db_info
 		@info
@@ -68,5 +67,5 @@ WRITE
 		@db.close
 	end
 end
-end
-end
+# end
+# end
