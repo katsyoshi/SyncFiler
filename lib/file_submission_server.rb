@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 # require File.dirname(__FILE__)+'/syncfiler.rb'
 require 'msgpack-rpc'
+require 'socket'
 module SyncFiler
 module FileSubmission
 class Server
@@ -11,15 +12,19 @@ class Server
 	GB = MB * KB
 	
 	def initialize(port=9090, block=BLOCK)
-		@conf=SyncFiler::Settings.read
-	rescue e 
-		hs = {'default' => "SyncFiles", 'port_no' => port, 
-			'host' => Socket.gethostname}
-		SyncFiler::Settings.write_setting_file("server",hs)
-		@conf=SyncFiler::Settings.read
+		conf=SyncFiler::Settings.read
+	rescue Errno::ENOENT
+		SyncFiler::Settings.write_setting_file nil, nil
+		conf={}
 	ensure
+		if conf['server'].nil?
+			hs = {'default' => "SyncFiles", 'port_no' => port, 'block_size' => blcok, 'host' => Socket.gethostname }
+			SyncFiler.write_setting_file("server", hs)
+			conf['server']=hs
+		end
 		# @db=SyncFiler::DB::FileInfoDB.new
 		# @db_info = @db.get_db_info
+		@conf = conf['server']
 		@vol={:kb => KB,:mb => MB,:mb => GB, :block => block}
 	end
 

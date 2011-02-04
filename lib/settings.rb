@@ -1,14 +1,16 @@
 #!/usr/bin/env ruby
 # -*- coding: utf-8 -*-
 require 'yaml'
-
 module SyncFiler
-class Settings
+class Settings 
 	def self.read(file="~/.syncfiler.d/settings.yml")
 		path = File.expand_path(file)
 		config = YAML.load( File.read(File.expand_path(path)) )
 	rescue => e
+		write_setting_file( nil, {} )
 		return e
+	else
+		return config
 	end
 	
 	def self.write_setting_file( type, hash,

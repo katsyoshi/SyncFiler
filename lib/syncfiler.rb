@@ -11,6 +11,8 @@ module SyncFiler
 		# SQLite3::Database.new(d) unless File.exist? d
 		#		end
 	end
+	class ReadError
+	end
 end
 
 require File.join(File.dirname(__FILE__),'file_submission_client')

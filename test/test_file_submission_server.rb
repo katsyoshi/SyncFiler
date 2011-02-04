@@ -3,10 +3,9 @@
 require File.dirname(__FILE__)+'/test_helper'
 
 class TC_FileSubmissionServer < Test::Unit::TestCase
-	SEND_FILE="file.dd"
 	def setup
 		@srv = SyncFiler::FileSubmission::Server.new
-		@file=SEND_FILE
+		@file="file.dd"
 	end
 	
 	def teardown 
