@@ -14,9 +14,10 @@ class FileInfo
 	def initialize()
 		info=SyncFiler::Settings.read
 	rescue Errno::ENOENT
-		SyncFiler::Settings.write_setting_file nil, {}
+		p 'no'
 		info={}
 	ensure
+		p info 
 		if info['database'].nil?
 			p 'yes'
 			info=nil
