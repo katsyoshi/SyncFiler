@@ -2,6 +2,8 @@
 require File.dirname(__FILE__)+'/../test_helper.rb'
 
 class TC_FileInfo < Test::Unit::TestCase
+	@db = 'database'
+	@hs = {'path' => '~/.syncfiler.d/settings.yml'}
 	def setup
 		@db=SyncFiler::DB::FileInfo.new
 		@db.connect_file_db
@@ -30,9 +32,6 @@ class TC_FileInfo < Test::Unit::TestCase
 		assert @db.drop_table, "NG"
 	end
 
-	# def test_write_table
-	# 	assert @db.write_table, "NG"
-	# end
 	def test_disconnect_file_db
 		@db.connect_file_db
 		assert @db.disconnect_file_db, "NG"

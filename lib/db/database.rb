@@ -15,5 +15,6 @@ module DB
 	def drop_table(table_name)
 		@db.execute( "drop table if exists #{table_name}" )
 	end
+	
 end
 end

@@ -3,13 +3,16 @@
 require 'yaml'
 module SyncFiler
 class Settings 
-	def self.read(file="~/.syncfiler.d/settings.yml")
-		path = File.expand_path(file)
-		config = YAML.load( File.read(File.expand_path(path)) )
-	rescue => e
-		write_setting_file( nil, {} )
-		return e
-	else
+	def self.read( type, hash, file="~/.syncfiler.d/settings.yml" )
+		path = File.expand_path file
+		config = YAML.load( File.read(path) )
+	rescue Errno::ENOENT
+		config = {}
+	ensure
+		if !config[type]
+			write_setting_file type, hash
+			config[type] = hash
+		end
 		return config
 	end
 	
@@ -17,7 +20,7 @@ class Settings
 															 path='~/.syncfiler.d/settings.yml' )
 		pt = File.expand_path(path)
 		data = Hash.new
-		data = read(pt) if File.exist? pt
+		data = read(type, hash, pt) if File.exist? pt
 		data[ type ] = hash unless data[type]
 		fw = File.open(pt, 'w')
 		fw.write YAML.dump data

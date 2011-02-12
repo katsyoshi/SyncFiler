@@ -12,24 +12,12 @@ class FileInfo
 	alias :disconnect_file_db :disconnect_database
 	
 	def initialize()
-		info=SyncFiler::Settings.read
-	rescue Errno::ENOENT
-		p 'no'
-		info={}
-	ensure
-		p info 
-		if info['database'].nil?
-			p 'yes'
-			info=nil
-			hs = { 'database' => '~/.syncfiler.d/database.sqlite3' }
-			SyncFiler::Settings.write_setting_file "database", hs 
-			info['database'] = hs
-		end
-		@info = info['database']
+		@info=SyncFiler::Settings.read 'database', {'path' => '~/.syncfiler.d/database.sqlite3' }
+		# info=SyncFiler::Settings.read
 	end
 	
 	def get_db_info
-		@info
+		@info['database']
 	end
 	
 	def is_connected?

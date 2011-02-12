@@ -4,16 +4,16 @@ require File.dirname(__FILE__)+'/test_helper.rb'
 require 'socket'
 class TC_Settings < Test::Unit::TestCase
 	def setup
-		@c = {'server' => 'localhost', 'port_no' => 9090, 
-			'host' => Socket.gethostname }
+		@c = {'dsrv' => ['localhost'], 'port_no' => 9090, 
+			'name' => Socket.gethostname }
 		@s = {'default' => 'SyncFiles', 'port_no' => 9090, 
-			'host' => Socket.gethostname }
-		@d = {'database' => '~/.syncfiler.d/file_info.db'}
+			'name' => Socket.gethostname }
+		@d = {'path' => '~/.syncfiler.d/file_info.db'}
 		@file = './settings.yml'
 	end
 
 	def teardown
-		File.delete(@file) if File.exist?(@file)
+		# File.delete(@file) if File.exist?(@file)
 	end
 
 	def test_read

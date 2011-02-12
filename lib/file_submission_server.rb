@@ -12,20 +12,11 @@ class Server
 	GB = MB * KB
 	
 	def initialize(port=9090, block=BLOCK)
-		conf=SyncFiler::Settings.read
-	rescue Errno::ENOENT
-		SyncFiler::Settings.write_setting_file nil, nil
-		conf={}
-	ensure
-		if conf['server'].nil?
-			hs = {'default' => "SyncFiles", 'port_no' => port, 'block_size' => blcok, 'host' => Socket.gethostname }
-			SyncFiler.write_setting_file("server", hs)
-			conf['server']=hs
-		end
-		# @db=SyncFiler::DB::FileInfoDB.new
-		# @db_info = @db.get_db_info
+		vol={:kb => KB,:mb => MB,:mb => GB, :block => block}
+		hs = {'default' => "SyncFiles", 'port_no' => port, 'block_size' => blcok, 'host' => Socket.gethostname, 'vol' => vol }
+		conf=SyncFiler::Settings.read 'server', hs
 		@conf = conf['server']
-		@vol={:kb => KB,:mb => MB,:mb => GB, :block => block}
+		@vol = vol
 	end
 
 	def close

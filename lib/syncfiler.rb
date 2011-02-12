@@ -11,7 +11,13 @@ module SyncFiler
 		# SQLite3::Database.new(d) unless File.exist? d
 		#		end
 	end
-	class ReadError
+	class Error < Exception
+		class DB
+		end
+		class FileSubmission
+		end 
+		class Settings
+		end
 	end
 end
 
