@@ -24,14 +24,14 @@ class TC_Settings < Test::Unit::TestCase
 	end
 
 	def test_write_client
-		assert !SyncFiler::Settings.write_setting_file("client",@c,@file), "NG"
+		assert SyncFiler::Settings.write_setting_file("client",@c,@file), "NG"
 	end
 
 	def test_write_server
-		assert !SyncFiler::Settings.write_setting_file("server",@s, @file), "NG"
+		assert SyncFiler::Settings.write_setting_file("server",@s, @file), "NG"
 	end
 	
 	def test_write_database
-		assert !SyncFiler::Settings.write_setting_file("database",@d, @file), "NG"
+		assert SyncFiler::Settings.write_setting_file("database",@d, @file), "NG"
 	end
 end
