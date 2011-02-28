@@ -1,13 +1,13 @@
 en:
   must:
     support directory
-
   needs:
     GUI client soft
   maybe:  
     cyript comminication 
     threading
     user authorization
+
 ja:
   必要:
     ディレクトリ構造サポート
