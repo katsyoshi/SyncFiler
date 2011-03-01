@@ -8,14 +8,15 @@ class TC_FileSubmissionServer < Test::Unit::TestCase
 	end
 	
 	def teardown 
-		@srv.close
+		# @srv.close
 	end
 	
 	def test_send_file
 		assert(@srv.send_file(@file, 0), "NG")
 	end
-	
-	def test_recieve_file
+
+	def test_thread_recieve_file
+		return if File.open(@file).size > 10*1024*1024
 		s = Time.now
 		size = File.stat(@file).size/@srv.vol[:block]
 		send = []
@@ -46,10 +47,11 @@ class TC_FileSubmissionServer < Test::Unit::TestCase
 	def test_send_server_info
 		assert(@srv.send_server_info, "NG")
 	end
-
+	
 	def test_x_is_completed?
-		hs = { "rev.dd" => {:md5 => "7de65f8643f9de43423d8399e330672b"} }.to_msgpack
-		@srv.get_file_hash_value(hs)
-		assert(@srv.is_completed?("rev.dd"), "NG")
+		hv = Digest::MD5.hexdigest(File.open(@file).read)
+		hs = { @file => {:md5 => hv} }.to_msgpack
+		assert(!@srv.get_file_hash_value(hs), "NG")
+		assert(@srv.is_completed?(@file), "NG")
 	end
 end

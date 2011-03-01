@@ -15,30 +15,40 @@ class Server
 	
 	def initialize(port=9090, block=BLOCK)
 		vol={:kb => KB,:mb => MB,:mb => GB, :block => block}
-		hs = {'default' => "SyncFiles", 'port_no' => port, 'block_size' => block, 'host' => Socket.gethostname, 'vol' => vol }
+		hs = {'default' => "SyncFiles", 'port_no' => port, 
+			'block_size' => block, 'host' => Socket.gethostname, 'vol' => vol }
 		conf = SyncFiler::Settings.write_setting_file "server", hs
 		@conf = conf["server"]
 		@vol = vol
 	end
 
-	def close
-		nil
-	end
-	
 	# val
+	## FileSubmissionServer#vol
+	# send server has block volume
+	# サーバが管理するブロック情報を送る
 	def send_server_vol
 		@vol
 	end
+	alias :pull_vol :send_server_vol
 
 	# server settings
 	def send_server_info
 		@conf
 	end
+	alias :pull_server_info :send_server_info
 
 	# db info 
 	def send_db_info
 		@db_info
 	end
+	alias :pull_db_info :send_db_info
+	
+	# recieve file hash value 
+	def get_file_hash_value( msgpack )
+		@hash = MessagePack.unpack msgpack
+		nil 
+	end
+	alias :push_file_hash_value :get_file_hash_value
 	
 	## FileSubmissionServer#send_div_file
 	# send silialized div file
@@ -47,20 +57,23 @@ class Server
 	# hs[:file] = 読んだファイルの中身
 	# hs[:size] = ファイルのサイズ
 	# hs[:pos]  = 読んだファイルの場所 
+	# alias pull_file クライアントから見た動作名
 	def send_file(name, pos, block=@vol[:block])
 		# bc = name+"_%05d"%pos
 		file = File.open(name,'rb')
 		file.pos = pos * block
 		size = file.size # / block
 		fr = file.read(block)
-		hs = {:file => fr, :size => size, :pos => pos, :name => name, :block => block, :hash => fhash }
+		hs = {:file => fr, :size => size, :pos => pos, :name => name, :block => block }
 		hs.to_msgpack
 	end
+	alias :pull_file :send_file
 	
 	## FileSubmissionServer#recieve_div_file
 	# recieve silialized div file 
 	# silializeされたファイルを保存
 	# 使うときはThread使わないと遅い
+	# alias push_file 
 	def recieve_file( msgpack, write=msgpack["name"] )
 		f = MessagePack.unpack msgpack
 		pos = f["pos"].to_i
@@ -74,22 +87,15 @@ class Server
 		fw.close
 		nil
 	end
-
-	def get_file_hash_value( msgpack )
-		f = MessagePack.unpack msgpack
-		@hash = f
-		nil 
-	end
+	alias :push_file :recieve_file
 
 	:private
-	def vol
-		@vol
-	end
-
+	def hash ; @hash end
+	def vol ;	@vol end
 	## ファイルの送受信が完了したかどうかのタスク
 	# fname: file name
 	# dtype: hash digest type
-	# @hash[fname][
+	# 
 	def is_completed?( fname, dtype="md5" ) 
 		hs = nil 
 		hs = Digest::MD5.hexdigest(File.open(fname).read) if dtype == "md5"
