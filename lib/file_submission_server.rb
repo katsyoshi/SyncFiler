@@ -47,7 +47,7 @@ class Server
 	# hs[:file] = 読んだファイルの中身
 	# hs[:size] = ファイルのサイズ
 	# hs[:pos]  = 読んだファイルの場所 
-	def send_file(name, fhash, pos, block=@vol[:block])
+	def send_file(name, pos, block=@vol[:block])
 		# bc = name+"_%05d"%pos
 		file = File.open(name,'rb')
 		file.pos = pos * block

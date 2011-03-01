@@ -1,7 +1,6 @@
 #!/usr/bin/env ruby
 # -*- coding: utf-8 -*-
 require File.dirname(__FILE__)+'/test_helper'
-require 'digest/md5'
 class TC_FileSubmissionServer < Test::Unit::TestCase
 	def setup
 		@srv = SyncFiler::FileSubmission::Server.new
@@ -13,20 +12,27 @@ class TC_FileSubmissionServer < Test::Unit::TestCase
 	end
 	
 	def test_send_file
-		hs = Digest::MD5.hexdigest(File.open(@file,'rb').read)
-		assert(@srv.send_file(@file, hs, 0), "NG")
+		assert(@srv.send_file(@file, 0), "NG")
 	end
 	
 	def test_recieve_file
 		s = Time.now
 		size = File.stat(@file).size/@srv.vol[:block]
-		hs = Digest::MD5.hexdigest(File.open(@file,'rb').read)
-		th = Array.new
-		(0..size).each do |x| 
-			th << @srv.send_file(@file,hs,x)
+		send = []
+		size.times do |x| 
+			if (x+1) % 1000 == 0
+				print x+1
+			elsif ( x+1 ) % 100 == 0
+					print "."
+			end
+			send << Thread.new(x){|y| 
+				@srv.send_file(@file,y) 
+			} 
 		end
-		th.each do |x|
-			@srv.recieve_file(x, "rev.dd")
+		
+		send.each do |x|
+			msg = x.join.value
+			@srv.recieve_file(msg,"rev.dd")
 		end
 		diff = open(@file).readlines - open("rev.dd").readlines
 		assert(diff.empty?, "NG")
