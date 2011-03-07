@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 # -*- coding: utf-8 -*-
 # require File.dirname(__FILE__)+'/syncfiler.rb'
-require 'msgpack-rpc'
+require 'msgpack/rpc'
 require 'socket'
 require 'digest/md5'
 require 'digest/sha2'
@@ -48,6 +48,7 @@ class Server
 		@hash = MessagePack.unpack msgpack
 		nil 
 	end
+	alias :get_file_info :get_file_hash_value
 	alias :push_file_hash_value :get_file_hash_value
 	
 	## FileSubmissionServer#send_div_file

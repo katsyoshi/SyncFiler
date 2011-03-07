@@ -15,29 +15,20 @@ class TC_FileSubmissionServer < Test::Unit::TestCase
 		assert(@srv.send_file(@file, 0), "NG")
 	end
 
-	def test_thread_recieve_file
-		return if File.open(@file).size > 10*1024*1024
+	def test_thread_recieve_return
+		#file if File.open(@file).size > 10*1024*1024
 		s = Time.now
 		size = File.stat(@file).size/@srv.vol[:block]
 		send = []
 		size.times do |x| 
-			if (x+1) % 1000 == 0
-				print x+1
-			elsif ( x+1 ) % 100 == 0
-					print "."
-			end
 			send << Thread.new(x){|y| 
-				@srv.send_file(@file,y) 
+				msg = @srv.send_file(@file,y) 
+				@srv.recieve_file(msg,"rev.dd")
 			} 
 		end
-		
-		send.each do |x|
-			msg = x.join.value
-			@srv.recieve_file(msg,"rev.dd")
-		end
+		send.each{|stack|	stack.join}
 		diff = open(@file).readlines - open("rev.dd").readlines
 		assert(diff.empty?, "NG")
-		puts (Time.now - s ).to_s + "s"
 	end
 	
 	def test_send_server_vol
