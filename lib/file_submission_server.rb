@@ -86,7 +86,7 @@ class Server
 		fw.pos = block * pos
 		fw.write( file )
 		fw.close
-		nil
+		true
 	end
 	alias :push_file :recieve_file
 
