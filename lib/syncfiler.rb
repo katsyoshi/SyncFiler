@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 module SyncFiler
 	# require 'rubygems'
 	# require 'msgpack/rpc'

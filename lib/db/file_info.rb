@@ -12,7 +12,8 @@ class FileInfo
 	alias :disconnect_file_db :disconnect_database
 	
 	def initialize()
-		@info=SyncFiler::Settings.read 'database', {'path' => '~/.syncfiler.d/database.sqlite3' }
+		db = {"path" => "~/.syncfiler.d/database.sqlite3"}
+		@info=SyncFiler::Settings.write_setting_file "database", db
 		# info=SyncFiler::Settings.read
 	end
 	
@@ -28,7 +29,7 @@ class FileInfo
 	def get_file_list
 		search_db( :name )
 	end
-	
+
 	## create_table
 	# make database table
 	def create_table()

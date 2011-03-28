@@ -2,7 +2,7 @@
 module SyncFiler
 module DB
 	require 'sqlite3'
-	def create_database(db_name="~/.syncfiler.d/database.sqlite3", option={})
+	def create_database(db_name, option={})
 		path = File.expand_path db_name
 		@db=SQLite3::Database.new path, option
 	end

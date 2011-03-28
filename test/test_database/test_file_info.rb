@@ -2,12 +2,15 @@
 require File.dirname(__FILE__)+'/../test_helper.rb'
 
 class TC_FileInfo < Test::Unit::TestCase
-	@db = 'database'
+	KB=1024*8
+	BLOCK=8*KB
 	@hs = {'path' => '~/.syncfiler.d/settings.yml'}
 	def setup
 		@db=SyncFiler::DB::FileInfo.new
-		@db.connect_file_db
-		@db.create_table
+		info=@db.get_db_info
+		@path=info["path"]
+		@db.connect_file_db @path
+		@db.create_table 
 	end
 	
 	def teardown
@@ -25,7 +28,7 @@ class TC_FileInfo < Test::Unit::TestCase
 	end
 	
 	def test_connect_file_db
-		assert @db.connect_file_db, "NG"
+		assert @db.connect_file_db(@path), "NG"
 	end
 	
 	def test_drop_table
@@ -33,7 +36,7 @@ class TC_FileInfo < Test::Unit::TestCase
 	end
 
 	def test_disconnect_file_db
-		@db.connect_file_db
+		@db.connect_file_db @path
 		assert @db.disconnect_file_db, "NG"
 	end
 	def test_get_db_info
@@ -45,9 +48,10 @@ class TC_FileInfo < Test::Unit::TestCase
 	end
 	
 	def test_write_file_info
-		tp = {:id => "2b5e8dbf35a784f26753527c60945e019227e029", 
-			:name => "test", :path => './', :size => 2048, :block => 1, :host => 'self' }
+		file = ARGV[0]
+		tp = get_file_info( file )
 		assert @db.write_file_info(tp), "NG"
+		p @db.search_db "*"
 	end	
 
 	def test_search_db
@@ -57,6 +61,16 @@ class TC_FileInfo < Test::Unit::TestCase
 	
 	def test_drop_table
 		assert @db.drop_table("fileinfo"), "NG"
+	end
+
+	def get_file_info( name, block = BLOCK )
+		f = File.expand_path(name)
+		hs = File.open(f,'rb').read
+		hash = Digest::MD5.hexdigest(hs)
+		size = File.size(f) / block
+		host = `hostname -s`.chomp
+		return {:name => name, :size => size, :path => f, :id => hash, 
+			:block => block, :host => host}
 	end
 end
 
