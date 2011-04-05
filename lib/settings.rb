@@ -1,6 +1,9 @@
 #!/usr/bin/env ruby
 # -*- coding: utf-8 -*-
 require 'yaml'
+require File.dirname(__FILE__)+'/syncfiler.rb'
+
+include SyncFiler
 module SyncFiler
 class Settings 
   def self.read(file="~/.syncfiler.d/settings.yml" )
@@ -12,13 +15,18 @@ class Settings
                                path='~/.syncfiler.d/settings.yml' )
     pt = File.expand_path(path)
     data = Hash.new
-    data = read(pt) if File.exist? pt
-    data[type] = hash unless data[type]
     fw = File.open(pt, 'w')
     yml = YAML.dump data
     fw.write yml
     fw.close
     return data
+  end
+
+  def self.exist?(file="~/.syncfiler.d/settings.yml")
+    f = File.expand_path file 
+    path = File.dirname(f)
+    Dir.mkdir path unless dir? path
+    File.exist? f
   end
 end
 end

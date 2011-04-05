@@ -35,9 +35,15 @@ class TC_FileSubmissionServer < Test::Unit::TestCase
   end
   
   def test_x_is_completed?
-    hv = Digest::MD5.hexdigest(File.open(@file).read)
-    hs = { @file => {:md5 => hv} }.to_msgpack
+    md5 = Digest::MD5.hexdigest(File.open(@file).read)
+    hs = { @file => {:md5 => md5} }.to_msgpack
     assert(!@srv.get_file_hash_value(hs), "NG")
-    assert(@srv.is_completed?(@file), "NG")
+    assert(@srv.completed?(@file), "NG")
+    assert(@srv.is_completed(@file), "NG")
+    sha = Digest::SHA256.hexdigest(File.open(@file).read)
+    hs = { @file => {:sha => sha} }.to_msgpack
+    @srv.get_file_hash_value hs
+    assert(@srv.hash, "NG")
+    assert(@srv.completed?(@file,'sha'), "NG")
   end
 end

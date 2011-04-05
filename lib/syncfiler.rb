@@ -12,6 +12,10 @@ module SyncFiler
     # SQLite3::Database.new(d) unless File.exist? d
     #		end
   end
+  def dir?(path="~/.syncfiler.d")
+    fp = File.expand_path path
+    Dir.exist? fp
+  end
   class Error < Exception
     class DB
     end

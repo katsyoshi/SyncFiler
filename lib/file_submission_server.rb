@@ -43,7 +43,8 @@ class Server
   end
   alias :pull_db_info :send_db_info
   
-  # recieve file hash value 
+  #   # recieve file hash value 
+  #   client -> server
   def get_file_hash_value( msgpack )
     @hash = MessagePack.unpack msgpack
     nil 
@@ -91,18 +92,23 @@ class Server
   alias :push_file :recieve_file
   
   :private
-  def hash ; @hash end
-  def vol ;	@vol end
+  attr_reader :hash
+  attr_reader :vol
+  # def hash ; @hash end
+  # def vol ;	@vol end
   ## ファイルの送受信が完了したかどうかのタスク
   # fname: file name
   # dtype: hash digest type
   # 
-  def is_completed?( fname, dtype="md5" ) 
-    hs = nil 
-    hs = Digest::MD5.hexdigest(File.open(fname).read) if dtype == "md5"
-    hs = Digest::SHA256.hexdigest(File.open(fname).read) if dtype =~ /sha/
+  def completed?( fname, dtype="md5" ) 
+    hs = nil
+    file = File.open(fname).read
+    # hs = Digest::Base.hexdigest(file)
+    hs = Digest::MD5.hexdigest(file) if dtype =~ /md5/i
+    hs = Digest::SHA256.hexdigest(file) if dtype =~ /sha/i
     return hs == @hash[fname][dtype]
   end
+  alias :is_completed :completed?
 end
 end 
 end

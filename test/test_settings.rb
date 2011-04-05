@@ -16,11 +16,10 @@ class TC_Settings < Test::Unit::TestCase
     # File.delete(@file) if File.exist?(@file)
   end
   
-  def test_read
-    SyncFiler::Settings.write_setting_file "client", @c, @file
-    SyncFiler::Settings.write_setting_file "server", @s, @file
-    SyncFiler::Settings.write_setting_file "database", @d, @file
-    assert_instance_of(Hash, SyncFiler::Settings.read(@file), "OK" )
+  def test_x_read
+    h = SyncFiler::Settings.read(@file)
+    assert_instance_of(Hash, h, "OK" )
+    p h
   end
   
   def test_write_client
@@ -33,5 +32,8 @@ class TC_Settings < Test::Unit::TestCase
   
   def test_write_database
     assert SyncFiler::Settings.write_setting_file("database",@d, @file), "NG"
+  end
+  def test_exist?
+    assert SyncFiler::Settings.exist?, "No Setting File"
   end
 end
