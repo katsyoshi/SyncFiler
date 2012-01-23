@@ -2,17 +2,19 @@
 # -*- coding: utf-8 -*-
 require File.dirname(__FILE__)+'/test_helper.rb'
 
-class TC_FileSubmissionClient < Test::Unit::TestCase
+class TC_SyncFilerClient < Test::Unit::TestCase
   def start_server server
-    quque << Thread.new{
-      server = SyncFiler::Server.new({:default => "./ponponpain"}
+    Thread.new{
+      server = SyncFiler::Server.new({:default => "./ponponpain"})
+      @svr = MessagePack::RPC::Server.new
+      @srv.listen '0.0.0.0', 9090, server
     }
   end
 
   def setup
     client = { :default => './', :server_addr => 'localhost'}
     @cl = SyncFiler::Client.new client
-    @srv = SyncFiler::Server.new
+    start_server(@server)
     @cl.connect_server
   end
 

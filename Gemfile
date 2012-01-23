@@ -1,3 +1,8 @@
 source :rubygems
-gem 'msgpack-rpc'
-gem 'sqlite3-ruby', :requirements => 'sqlite3'
+platforms :ruby_19 do
+  gem 'msgpack-rpc'
+  gem 'sqlite3-ruby', :require => 'sqlite3'
+  group :test do
+    gem 'rspec', :require => 'spec'
+  end
+end
