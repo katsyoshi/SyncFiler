@@ -1,9 +1,0 @@
-Mon, 23 Jan 2012 19:13:32 +0900
-lib/client.rb	Mon, 23 Jan 2012 17:33:17 +0900
-lib/db/database.rb	Sat, 02 Apr 2011 10:47:01 +0900
-lib/db/file_info.rb	Sat, 02 Apr 2011 10:46:44 +0900
-lib/db/file_info_db.rb	Sat, 02 Apr 2011 10:49:21 +0900
-lib/db/name_info.rb	Sat, 02 Apr 2011 10:47:19 +0900
-lib/server.rb	Mon, 23 Jan 2012 16:43:57 +0900
-lib/settings.rb	Mon, 26 Sep 2011 17:37:35 +0900
-lib/syncfiler.rb	Mon, 26 Sep 2011 17:36:57 +0900
