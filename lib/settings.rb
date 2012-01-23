@@ -3,9 +3,9 @@
 require 'yaml'
 require File.dirname(__FILE__)+'/syncfiler.rb'
 
-include SyncFiler
-module SyncFiler
-class Settings 
+# module SyncFiler
+class SyncFiler::Settings 
+  include SyncFiler
   def self.read(file="~/.syncfiler.d/settings.yml" )
     path = File.expand_path file
     config = YAML.load(File.open(path).read)
@@ -23,10 +23,10 @@ class Settings
   end
 
   def self.exist?(file="~/.syncfiler.d/settings.yml")
-    f = File.expand_path file 
+    f = File.expand_path file
     path = File.dirname(f)
-    Dir.mkdir path unless dir? path
+    Dir.mkdir path unless Dir.exist? path
     File.exist? f
   end
 end
-end
+

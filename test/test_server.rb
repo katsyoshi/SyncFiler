@@ -3,38 +3,38 @@
 require File.dirname(__FILE__)+'/test_helper'
 class TC_FileSubmissionServer < Test::Unit::TestCase
   def setup
-    @srv = SyncFiler::FileSubmission::Server.new
+    @srv = SyncFiler::Server.new
     @file="file.dd"
   end
-  
-  def teardown 
+
+  def teardown
     # @srv.close
   end
-  
+
   def test_send_file
-    assert(@srv.send_file(@file, 0), "NG")
+    assert(@srv.send_file(@file, 0), "send block file")
   end
-  
+
   def test_recieve_file
     s = Time.now
     size = File.stat(@file).size/@srv.vol[:block]
-    (0..size).each do |x| 
-      msg = @srv.send_file(@file,x) 
+    (0..size).each do |x|
+      msg = @srv.send_file(@file,x)
       @srv.recieve_file(msg,"rev.dd")
     end
     diff = open(@file).readlines - open("rev.dd").readlines
-    assert(diff.empty?, "NG")
+    assert(diff.empty?, "cannot recieved rev.dd")
   end
-  
+
   def test_send_server_vol
-    assert(@srv.send_server_vol, "NG")
+    assert(@srv.send_server_vol, "cannot send server vol! why?")
   end
-  
+
   def test_send_server_info
-    assert(@srv.send_server_info, "NG")
+    assert(@srv.send_server_info, "cannot send server info! why?")
   end
-  
-  def test_x_is_completed?
+
+  def test_file_is_completed?
     md5 = Digest::MD5.hexdigest(File.open(@file).read)
     hs = { @file => {:md5 => md5} }.to_msgpack
     assert(!@srv.get_file_hash_value(hs), "NG")

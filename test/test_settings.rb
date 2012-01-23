@@ -19,19 +19,21 @@ class TC_Settings < Test::Unit::TestCase
   def test_x_read
     h = SyncFiler::Settings.read(@file)
     assert_instance_of(Hash, h, "OK" )
-    p h
   end
   
   def test_write_client
-    assert SyncFiler::Settings.write_setting_file("client",@c,@file), "NG"
+    assert SyncFiler::Settings.write_setting_file("client",@c,@file), 
+    "cannot write client settings"
   end
   
   def test_write_server
-    assert SyncFiler::Settings.write_setting_file("server",@s, @file), "NG"
+    assert SyncFiler::Settings.write_setting_file("server",@s, @file), 
+    "cannot write server settings"
   end
   
   def test_write_database
-    assert SyncFiler::Settings.write_setting_file("database",@d, @file), "NG"
+    assert SyncFiler::Settings.write_setting_file("database",@d, @file), 
+    "cannot write database settings"
   end
   def test_exist?
     assert SyncFiler::Settings.exist?, "No Setting File"
