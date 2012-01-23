@@ -3,13 +3,12 @@
 # require File.dirname(__FILE__)+'/syncfiler.rb'
 module SyncFiler
 class Client
-  def initialize(client = {:default => '~/SyncFiles',
-                   :server_addr => nil, :port_no => 9090, :host => nil })
-    @setting=SyncFiler::Settings.read
-    if @settings[:client.to_sym].nil?
-      @settings[:client.to_sym] = client
-      SyncFiler::Settings.write_setting_file('client', client)
-    end
+  def initialize(client = {}, file=SyncFiler::SETTINGS)
+    client[:default.to_s] ||= SyncFiler::DEFAULT
+    client[:server_addr.to_s] ||= 'localhost'
+    client[:port_no.to_s] ||= SyncFiler::PORT
+    client[:host.to_s] ||= Socket.gethostname
+    @settings = SyncFiler::Settings.write :client, client
   end
 
   def setting
@@ -25,8 +24,8 @@ class Client
   end
 
   def connect_server
-    addr = @setting[:server_addr.to_sym]
-    port = @setting[:port_no.to_sym].to_i
+    addr = @setting[:server_addr]
+    port = @setting[:port_no].to_i
     @client = MessagePack::RPC::Client.new(addr, port)
   end
 

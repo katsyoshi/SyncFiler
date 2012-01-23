@@ -3,3 +3,5 @@ Gemfile.lock
 *.dd
 .bundle
 doc
+*.yml
+*.yaml

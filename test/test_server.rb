@@ -3,12 +3,12 @@
 require File.dirname(__FILE__)+'/test_helper'
 class TC_FileSubmissionServer < Test::Unit::TestCase
   def setup
-    @srv = SyncFiler::Server.new
+    @srv = SyncFiler::Server.new({}, './settings.yml')
     @file="file.dd"
   end
 
   def teardown
-    # @srv.close
+    @srv = nil
   end
 
   def test_send_file
@@ -31,13 +31,14 @@ class TC_FileSubmissionServer < Test::Unit::TestCase
   end
 
   def test_send_server_info
-    assert(@srv.send_server_info, "cannot send server info! why?")
+    info = @srv.send_server_info
+    assert(info, "cannot send server info! why?")
   end
 
-  def test_file_is_completed?
+  def test_xfile_is_completed?
     md5 = Digest::MD5.hexdigest(File.open(@file).read)
     hs = { @file => {:md5 => md5} }.to_msgpack
-    assert(!@srv.get_file_hash_value(hs), "NG")
+    assert(@srv.get_file_hash_value(hs), "NG")
     assert(@srv.completed?(@file), "NG")
     assert(@srv.is_completed(@file), "NG")
     sha = Digest::SHA256.hexdigest(File.open(@file).read)

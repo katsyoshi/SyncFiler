@@ -7,21 +7,24 @@ require 'digest/md5'
 require 'digest/sha2'
 module SyncFiler
 class Server
-  KB = 1024
-  BLOCK = 8 * KB
-  MB = KB * KB
-  GB = MB * KB
-  def initialize(settings=Hash)
-    vol={:kb => KB,:mb => MB,:gb => GB, :block => block}
-    settings[:default] ||= "SyncFiles"
-    settings[:port] ||= 9090
-    settings[:block]||= BLOCK
-    settings[:host] ||= Socket.gethostname
-    settings[:vol]  ||= vol
-    conf = SyncFiler::Settings.write_setting_file "server", settings
-    @conf = conf[:server]
-    @vol = vol
+  ## SyncFiler::Serverコンストラクタ
+  # settings: 初期設定
+  # file: 設定ファイル
+  def initialize(settings={}, file=SyncFiler::SETTINGS)
+    settings["default"] ||= SyncFiler::DEFAULT
+    settings["port"] ||= SyncFiler::PORT
+    settings["block"]||= SyncFiler::BLOCK
+    settings["host"] ||= Socket.gethostname
+    settings["vol"] ||= SyncFiler::VOL
+    info = SyncFiler::Settings.write :server, settings, file
+    @info = info[:server.to_s]
+    @vol = settings[:vol.to_s]
   end
+
+  # def shutdown(obj)
+  #   obj = nil
+  # end
+  # alias :close :shutdown
 
   ## Server#vol
   # send server has block volume
@@ -33,7 +36,7 @@ class Server
 
   # server settings
   def send_server_info
-    @conf
+    @info
   end
   alias :pull_server_info :send_server_info
 

@@ -3,18 +3,26 @@
 require 'yaml'
 require File.dirname(__FILE__)+'/syncfiler.rb'
 
-# module SyncFiler
-class SyncFiler::Settings 
+module SyncFiler
+class Settings
   include SyncFiler
-  def self.read(file="~/.syncfiler.d/settings.yml" )
+
+  ## 設定ファイルを読み込む
+  # file: 設定ファイル
+  def self.read(file=SyncFiler::SETTINGS)
     path = File.expand_path file
-    config = YAML.load(File.open(path).read)
+    YAML.load(File.open(path).read)
   end
-  
-  def self.write_setting_file( type, hash,
-                               path='~/.syncfiler.d/settings.yml' )
+
+  ## 設定ファイルに書き込む
+  # type: 書き込む種類，server, client, database
+  # hash: 書き込む内容
+  # path: 設定ファイル
+  def self.write( type, hash, path=SyncFiler::SETTINGS )
     pt = File.expand_path(path)
-    data = Hash.new
+    data = {}
+    data = self.read(pt) if File.exist? pt
+    data[type.to_s] = hash
     fw = File.open(pt, 'w')
     yml = YAML.dump data
     fw.write yml
@@ -22,11 +30,13 @@ class SyncFiler::Settings
     return data
   end
 
-  def self.exist?(file="~/.syncfiler.d/settings.yml")
+  ## 設定ファイルの存在確認
+  # file: 設定ファイル
+  def self.exist?(file=SyncFiler::SETTINGS)
     f = File.expand_path file
     path = File.dirname(f)
     Dir.mkdir path unless Dir.exist? path
     File.exist? f
   end
 end
-
+end

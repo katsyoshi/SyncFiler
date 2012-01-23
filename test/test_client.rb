@@ -12,10 +12,11 @@ class TC_SyncFilerClient < Test::Unit::TestCase
   end
 
   def setup
-    client = { :default => './', :server_addr => 'localhost'}
-    @cl = SyncFiler::Client.new client
+    # client = {=> './', :server_addr.to_s => 'localhost'}
+    client = {}
+    @cl = SyncFiler::Client.new( client, './test_settings.yml')
     start_server(@server)
-    @cl.connect_server
+    # @cl.connect_server
   end
 
   def teardown
