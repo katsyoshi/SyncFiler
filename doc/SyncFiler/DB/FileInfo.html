@@ -1,555 +1,486 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!DOCTYPE html>
+
+<html>
 <head>
-	<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
 
-	<title>Class: SyncFiler::DB::FileInfo</title>
+<title>class SyncFiler::DB::FileInfo - RDoc Documentation</title>
 
-	<link rel="stylesheet" href="../../rdoc.css" type="text/css" media="screen" />
+<link type="text/css" media="screen" href="../../rdoc.css" rel="stylesheet">
 
-	<script src="../../js/jquery.js" type="text/javascript"
-		charset="utf-8"></script>
-	<script src="../../js/thickbox-compressed.js" type="text/javascript"
-		charset="utf-8"></script>
-	<script src="../../js/quicksearch.js" type="text/javascript"
-		charset="utf-8"></script>
-	<script src="../../js/darkfish.js" type="text/javascript"
-		charset="utf-8"></script>
+<script type="text/javascript">
+  var rdoc_rel_prefix = "../../";
+</script>
 
-</head>
-<body class="class">
+<script type="text/javascript" charset="utf-8" src="../../js/jquery.js"></script>
+<script type="text/javascript" charset="utf-8" src="../../js/navigation.js"></script>
+<script type="text/javascript" charset="utf-8" src="../../js/search_index.js"></script>
+<script type="text/javascript" charset="utf-8" src="../../js/search.js"></script>
+<script type="text/javascript" charset="utf-8" src="../../js/searcher.js"></script>
+<script type="text/javascript" charset="utf-8" src="../../js/darkfish.js"></script>
 
-	<div id="metadata">
-		<div id="home-metadata">
-			<div id="home-section" class="section">
-        <h3 class="section-header">
-          <a href="../../index.html">Home</a>
-          <a href="../../index.html#classes">Classes</a>
-          <a href="../../index.html#methods">Methods</a>
-        </h3>
-			</div>
-		</div>
 
-		<div id="file-metadata">
-			<div id="file-list-section" class="section">
-				<h3 class="section-header">In Files</h3>
-				<div class="section-body">
-					<ul>
-					
-						<li><a href="../../lib/db/file_info_rb.html?TB_iframe=true&amp;height=550&amp;width=785"
-							class="thickbox" title="lib/db/file_info.rb">lib/db/file_info.rb</a></li>
-					
-						<li><a href="../../lib/db/file_info_db_rb.html?TB_iframe=true&amp;height=550&amp;width=785"
-							class="thickbox" title="lib/db/file_info_db.rb">lib/db/file_info_db.rb</a></li>
-					
-					</ul>
-				</div>
-			</div>
+<body id="top" class="class">
+<nav id="metadata">
+  <nav id="home-section" class="section">
+  <h3 class="section-header">
+    <a href="../../index.html">Home</a>
+    <a href="../../table_of_contents.html#classes">Classes</a>
+    <a href="../../table_of_contents.html#methods">Methods</a>
+  </h3>
+</nav>
 
-			
-		</div>
 
-		<div id="class-metadata">
+  <nav id="search-section" class="section project-section" class="initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <h3 class="section-header">
+      <input type="text" name="search" placeholder="Search" id="search-field"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </h3>
+  </form>
 
-			<!-- Parent Class -->
-			
-			<div id="parent-class-section" class="section">
-				<h3 class="section-header">Parent</h3>
-				
-				<p class="link">ActiveRecord::Base</p>
-				
-			</div>
-			
+  <ul id="search-results" class="initially-hidden"></ul>
+</nav>
 
-			<!-- Namespace Contents -->
-			
 
-			<!-- Method Quickref -->
-			
-			<div id="method-list-section" class="section">
-				<h3 class="section-header">Methods</h3>
-				<ul class="link-list">
-					
-					<li><a href="#method-c-load_configurations">::load_configurations</a></li>
-					
-					<li><a href="#method-c-new">::new</a></li>
-					
-					<li><a href="#method-i-closed%3F">#closed?</a></li>
-					
-					<li><a href="#method-i-create_table">#create_table</a></li>
-					
-					<li><a href="#method-i-get_db_info">#get_db_info</a></li>
-					
-					<li><a href="#method-i-get_file_list">#get_file_list</a></li>
-					
-					<li><a href="#method-i-is_connected%3F">#is_connected?</a></li>
-					
-					<li><a href="#method-i-search_db">#search_db</a></li>
-					
-					<li><a href="#method-i-write_file_info">#write_file_info</a></li>
-					
-				</ul>
-			</div>
-			
+  <div id="file-metadata">
+    <nav id="file-list-section" class="section">
+  <h3 class="section-header">Defined In</h3>
+  <ul>
+    <li>lib/db/file_info.rb
+    <li>lib/db/file_info_db.rb
+  </ul>
+</nav>
 
-			<!-- Included Modules -->
-			
-			<div id="includes-section" class="section">
-				<h3 class="section-header">Included Modules</h3>
-				<ul class="link-list">
-				
-				
-					<li><a class="include" href="../DB.html">SyncFiler::DB</a></li>
-				
-				
-				</ul>
-			</div>
-			
-		</div>
+    
+  </div>
 
-		<div id="project-metadata">
-			
-			
-			<div id="fileindex-section" class="section project-section">
-				<h3 class="section-header">Files</h3>
-				<ul>
-				
-					<li class="file"><a href="../../LICENSE_txt.html">LICENSE.txt</a></li>
-				
-					<li class="file"><a href="../../README.html">README</a></li>
-				
-					<li class="file"><a href="../../TODO.html">TODO</a></li>
-				
-				</ul>
-			</div>
-			
+  <div id="class-metadata">
+    
+    <nav id="parent-class-section" class="section">
+  <h3 class="section-header">Parent</h3>
+  
+  <p class="link">ActiveRecord::Base
+  
+</nav>
 
-			<div id="classindex-section" class="section project-section">
-				<h3 class="section-header">Class Index
-					<span class="search-toggle"><img src="../../images/find.png"
-						height="16" width="16" alt="[+]"
-						title="show/hide quicksearch" /></span></h3>
-				<form action="#" method="get" accept-charset="utf-8" class="initially-hidden">
-				<fieldset>
-					<legend>Quicksearch</legend>
-					<input type="text" name="quicksearch" value=""
-						class="quicksearch-field" />
-				</fieldset>
-				</form>
+    <!-- Included Modules -->
+<nav id="includes-section" class="section">
+  <h3 class="section-header">Included Modules</h3>
 
-				<ul class="link-list">
-				
-					<li><a href="../../SyncFiler.html">SyncFiler</a></li>
-				
-					<li><a href="../../SyncFiler/DB.html">SyncFiler::DB</a></li>
-				
-					<li><a href="../../SyncFiler/DB/FileInfo.html">SyncFiler::DB::FileInfo</a></li>
-				
-					<li><a href="../../SyncFiler/DB/NameInfo.html">SyncFiler::DB::NameInfo</a></li>
-				
-					<li><a href="../../SyncFiler/Error.html">SyncFiler::Error</a></li>
-				
-					<li><a href="../../SyncFiler/Error/DB.html">SyncFiler::Error::DB</a></li>
-				
-					<li><a href="../../SyncFiler/Error/FileSubmission.html">SyncFiler::Error::FileSubmission</a></li>
-				
-					<li><a href="../../SyncFiler/Error/Settings.html">SyncFiler::Error::Settings</a></li>
-				
-					<li><a href="../../SyncFiler/FileSubmission.html">SyncFiler::FileSubmission</a></li>
-				
-					<li><a href="../../SyncFiler/FileSubmission/Client.html">SyncFiler::FileSubmission::Client</a></li>
-				
-					<li><a href="../../SyncFiler/FileSubmission/Server.html">SyncFiler::FileSubmission::Server</a></li>
-				
-					<li><a href="../../SyncFiler/Settings.html">SyncFiler::Settings</a></li>
-				
-					<li><a href="../../TC_FileInfo.html">TC_FileInfo</a></li>
-				
-					<li><a href="../../TC_FileSubmissionClient.html">TC_FileSubmissionClient</a></li>
-				
-					<li><a href="../../TC_FileSubmissionServer.html">TC_FileSubmissionServer</a></li>
-				
-					<li><a href="../../TC_Name.html">TC_Name</a></li>
-				
-					<li><a href="../../TC_Settings.html">TC_Settings</a></li>
-				
-				</ul>
-				<div id="no-class-search-results" style="display: none;">No matching classes.</div>
-			</div>
+  <ul class="link-list">
+  
+  
+    <li><a class="include" href="../DB.html">SyncFiler::DB</a>
+  
+  
+  </ul>
+</nav>
 
-			
-		</div>
-	</div>
+    <!-- Method Quickref -->
+<nav id="method-list-section" class="section">
+  <h3 class="section-header">Methods</h3>
 
-	<div id="documentation">
-		<h1 class="class">SyncFiler::DB::FileInfo</h1>
+  <ul class="link-list">
+    
+    <li><a href="#method-c-load_configurations">::load_configurations</a>
+    
+    <li><a href="#method-c-new">::new</a>
+    
+    <li><a href="#method-i-closed-3F">#closed?</a>
+    
+    <li><a href="#method-i-create_table">#create_table</a>
+    
+    <li><a href="#method-i-get_db_info">#get_db_info</a>
+    
+    <li><a href="#method-i-get_file_list">#get_file_list</a>
+    
+    <li><a href="#method-i-is_connected-3F">#is_connected?</a>
+    
+    <li><a href="#method-i-search_db">#search_db</a>
+    
+    <li><a href="#method-i-write_file_info">#write_file_info</a>
+    
+  </ul>
+</nav>
 
-		<div id="description">
-			
-		</div>
+  </div>
 
-		<!-- Constants -->
-		
+  <div id="project-metadata">
+    
+    <nav id="classindex-section" class="section project-section">
+  <h3 class="section-header">Class and Module Index</h3>
 
-		<!-- Attributes -->
-		
+  <ul class="link-list">
+  
+    <li><a href="../../SyncFiler.html">SyncFiler</a>
+  
+    <li><a href="../../SyncFiler/Client.html">SyncFiler::Client</a>
+  
+    <li><a href="../../SyncFiler/DB.html">SyncFiler::DB</a>
+  
+    <li><a href="../../SyncFiler/DB/FileInfo.html">SyncFiler::DB::FileInfo</a>
+  
+    <li><a href="../../SyncFiler/DB/NameInfo.html">SyncFiler::DB::NameInfo</a>
+  
+    <li><a href="../../SyncFiler/Error.html">SyncFiler::Error</a>
+  
+    <li><a href="../../SyncFiler/Error/Client.html">SyncFiler::Error::Client</a>
+  
+    <li><a href="../../SyncFiler/Error/DB.html">SyncFiler::Error::DB</a>
+  
+    <li><a href="../../SyncFiler/Error/Server.html">SyncFiler::Error::Server</a>
+  
+    <li><a href="../../SyncFiler/Error/Settings.html">SyncFiler::Error::Settings</a>
+  
+    <li><a href="../../SyncFiler/Server.html">SyncFiler::Server</a>
+  
+    <li><a href="../../SyncFiler/Settings.html">SyncFiler::Settings</a>
+  
+  </ul>
+</nav>
 
-		<!-- Methods -->
-		
-		<div id="public-class-method-details" class="method-section section">
-			<h3 class="section-header">Public Class Methods</h3>
+  </div>
+</nav>
 
-		
-			<div id="load-configurations-method" class="method-detail ">
-				<a name="method-c-load_configurations"></a>
+<div id="documentation">
+  <h1 class="class">class SyncFiler::DB::FileInfo</h1>
 
-				<div class="method-heading">
-				
-					<span class="method-name">load_configurations</span><span
-						class="method-args">(conf="~/.syncfiler.d/database.yaml")</span>
-					<span class="method-click-advice">click to toggle source</span>
-				
-				</div>
+  <div id="description" class="description">
+    
+  </div><!-- description -->
 
-				<div class="method-description">
-					
-					
-					
+  
+  
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
 
-					
-					<div class="method-source-code"
-						id="load-configurations-source">
-<pre>
-    <span class="ruby-comment cmt"># File lib/db/file_info_db.rb, line 7</span>
- 7:         <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">load_configurations</span>(<span class="ruby-identifier">conf</span>=<span class="ruby-value str">&quot;~/.syncfiler.d/database.yaml&quot;</span>)
- 8:                 <span class="ruby-identifier">conf</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">expand_path</span> <span class="ruby-identifier">conf</span>
- 9:                 <span class="ruby-constant">SyncFiler</span><span class="ruby-operator">::</span><span class="ruby-constant">Settings</span>.<span class="ruby-identifier">write_db</span>(<span class="ruby-identifier">conf</span>) <span class="ruby-keyword kw">unless</span> <span class="ruby-constant">File</span>.<span class="ruby-identifier">exist?</span> <span class="ruby-identifier">conf</span>
-10:                 <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">configurations</span> = <span class="ruby-constant">SyncFiler</span><span class="ruby-operator">::</span><span class="ruby-constant">Settings</span>.<span class="ruby-identifier">read</span>(<span class="ruby-identifier">conf</span>)
-11:         <span class="ruby-keyword kw">end</span></pre>
-					</div>
-					
-				</div>
+    
 
-				
+    
 
-				
-			</div>
+    
 
-		
-			<div id="new-method" class="method-detail ">
-				<a name="method-c-new"></a>
+    <!-- Methods -->
+    
+     <section id="public-class-5Buntitled-5D-method-details" class="method-section section">
+      <h3 class="section-header">Public Class Methods</h3>
 
-				<div class="method-heading">
-				
-					<span class="method-name">new</span><span
-						class="method-args">()</span>
-					<span class="method-click-advice">click to toggle source</span>
-				
-				</div>
+    
+      <div id="method-c-load_configurations" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">load_configurations</span><span
+            class="method-args">(conf="~/.syncfiler.d/database.yaml")</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
 
-				<div class="method-description">
-					
-					
-					
+        <div class="method-description">
+          
+          
+          
 
-					
-					<div class="method-source-code"
-						id="new-source">
-<pre>
-    <span class="ruby-comment cmt"># File lib/db/file_info.rb, line 14</span>
-14:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>()
-15:                 <span class="ruby-ivar">@info</span>=<span class="ruby-constant">SyncFiler</span><span class="ruby-operator">::</span><span class="ruby-constant">Settings</span>.<span class="ruby-identifier">read</span> <span class="ruby-value str">'database'</span>, {<span class="ruby-value str">'path'</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">'~/.syncfiler.d/database.sqlite3'</span> }
-16:                 <span class="ruby-comment cmt"># info=SyncFiler::Settings.read</span>
-17:         <span class="ruby-keyword kw">end</span></pre>
-					</div>
-					
-				</div>
+          
+          <div class="method-source-code" id="load_configurations-source">
+            <pre><span class="ruby-comment"># File lib/db/file_info_db.rb, line 6</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">load_configurations</span>(<span class="ruby-identifier">conf</span>=<span class="ruby-string">&quot;~/.syncfiler.d/database.yaml&quot;</span>)
+  <span class="ruby-identifier">conf</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">expand_path</span> <span class="ruby-identifier">conf</span>
+  <span class="ruby-constant">SyncFiler</span><span class="ruby-operator">::</span><span class="ruby-constant">Settings</span>.<span class="ruby-identifier">write_db</span>(<span class="ruby-identifier">conf</span>) <span class="ruby-keyword">unless</span> <span class="ruby-constant">File</span>.<span class="ruby-identifier">exist?</span> <span class="ruby-identifier">conf</span>
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">configurations</span> = <span class="ruby-constant">SyncFiler</span><span class="ruby-operator">::</span><span class="ruby-constant">Settings</span>.<span class="ruby-identifier">read</span>(<span class="ruby-identifier">conf</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- load_configurations-source -->
+          
+        </div>
 
-				
+        
 
-				
-			</div>
+        
+      </div><!-- load_configurations-method -->
 
-		
-		</div>
-	
-		<div id="public-instance-method-details" class="method-section section">
-			<h3 class="section-header">Public Instance Methods</h3>
+    
+      <div id="method-c-new" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">new</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
 
-		
-			<div id="closed--method" class="method-detail method-alias">
-				<a name="method-i-closed%3F"></a>
+        <div class="method-description">
+          
+          
+          
 
-				<div class="method-heading">
-				
-					<span class="method-name">closed?</span><span
-						class="method-args">()</span>
-					<span class="method-click-advice">click to toggle source</span>
-				
-				</div>
+          
+          <div class="method-source-code" id="new-source">
+            <pre><span class="ruby-comment"># File lib/db/file_info.rb, line 12</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize</span>()
+  <span class="ruby-identifier">db</span> = {<span class="ruby-string">&quot;path&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;~/.syncfiler.d/database.sqlite3&quot;</span>}
+  <span class="ruby-ivar">@info</span>=<span class="ruby-constant">SyncFiler</span><span class="ruby-operator">::</span><span class="ruby-constant">Settings</span>.<span class="ruby-identifier">write_setting_file</span> <span class="ruby-string">&quot;database&quot;</span>, <span class="ruby-identifier">db</span>
+  <span class="ruby-comment"># info=SyncFiler::Settings.read</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- new-source -->
+          
+        </div>
 
-				<div class="method-description">
-					
-					
-					
+        
 
-					
-				</div>
+        
+      </div><!-- new-method -->
 
-				
+    
+    </section><!-- public-class-method-details -->
+  
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section section">
+      <h3 class="section-header">Public Instance Methods</h3>
 
-				
-				<div class="aliases">
-          Alias for: <a href="FileInfo.html#method-i-is_connected%3F">is_connected?</a>
-				</div>
-				
-			</div>
+    
+      <div id="method-i-closed-3F" class="method-detail method-alias">
+        
+        <div class="method-heading">
+          <span class="method-name">closed?</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
 
-		
-			<div id="create-table-method" class="method-detail ">
-				<a name="method-i-create_table"></a>
+        <div class="method-description">
+          
+          
+          
 
-				<div class="method-heading">
-				
-					<span class="method-name">create_table</span><span
-						class="method-args">()</span>
-					<span class="method-click-advice">click to toggle source</span>
-				
-				</div>
+          
+        </div>
 
-				<div class="method-description">
-					
-					<pre>
- create_table
+        
+
+        
+        <div class="aliases">
+          Alias for: <a href="FileInfo.html#method-i-is_connected-3F">is_connected?</a>
+        </div>
+        
+      </div><!-- closed-3F-method -->
+
+    
+      <div id="method-i-create_table" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">create_table</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <pre>create_table</pre>
+
+<p>make database table</p>
+          
+
+          
+          <div class="method-source-code" id="create_table-source">
+            <pre><span class="ruby-comment"># File lib/db/file_info.rb, line 33</span>
+  <span class="ruby-keyword">def</span> <span class="ruby-identifier">create_table</span>()
+    <span class="ruby-identifier">ct</span>=<span class="ruby-string">&quot;CREATE TABLE IF NOT EXISTS fileinfo(
+id TEXT PRIYMARY KEY,
+name CHAR,
+path CHAR,
+size INTEGER,
+block INTEGER,
+host CHAR
+);
+&quot;</span>
+    <span class="ruby-ivar">@db</span>.<span class="ruby-identifier">execute</span> <span class="ruby-identifier">ct</span>
+  <span class="ruby-keyword">end</span></pre>
+          </div><!-- create_table-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- create_table-method -->
+
+    
+      <div id="method-i-get_db_info" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">get_db_info</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="get_db_info-source">
+            <pre><span class="ruby-comment"># File lib/db/file_info.rb, line 18</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">get_db_info</span>
+  <span class="ruby-ivar">@info</span>[<span class="ruby-string">'database'</span>]
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- get_db_info-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- get_db_info-method -->
+
+    
+      <div id="method-i-get_file_list" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">get_file_list</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="get_file_list-source">
+            <pre><span class="ruby-comment"># File lib/db/file_info.rb, line 27</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">get_file_list</span>
+  <span class="ruby-identifier">search_db</span>( <span class="ruby-value">:name</span> )
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- get_file_list-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- get_file_list-method -->
+
+    
+      <div id="method-i-is_connected-3F" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">is_connected?</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="is_connected-3F-source">
+            <pre><span class="ruby-comment"># File lib/db/file_info.rb, line 22</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">is_connected?</span>
+  <span class="ruby-ivar">@db</span>.<span class="ruby-identifier">closed?</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- is_connected-3F-source -->
+          
+        </div>
+
+        
+        <div class="aliases">
+          Also aliased as: <a href="FileInfo.html#method-i-closed-3F">closed?</a>
+        </div>
+        
+
+        
+      </div><!-- is_connected-3F-method -->
+
+    
+      <div id="method-i-search_db" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">search_db</span><span
+            class="method-args">( keywords )</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="search_db-source">
+            <pre><span class="ruby-comment"># File lib/db/file_info.rb, line 47</span>
+  <span class="ruby-keyword">def</span> <span class="ruby-identifier">search_db</span>( <span class="ruby-identifier">keywords</span> )
+    <span class="ruby-identifier">sw</span>=<span class="ruby-string">&quot;select #{keywords} from fileinfo;
+&quot;</span>
+    <span class="ruby-ivar">@db</span>.<span class="ruby-identifier">execute</span> <span class="ruby-identifier">sw</span>
+  <span class="ruby-keyword">end</span></pre>
+          </div><!-- search_db-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- search_db-method -->
+
+    
+      <div id="method-i-write_file_info" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">write_file_info</span><span
+            class="method-args">( row )</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <pre>write_file_info</pre>
+
+<p>write file info in database row = {:id =&gt; md5 values, :name =&gt; file
+name, :path =&gt; file path,</p>
+
+<pre class="ruby">:<span class="ruby-identifier">block</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">block</span> <span class="ruby-identifier">size</span>, :<span class="ruby-identifier">host</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">host</span> <span class="ruby-identifier">name</span> }
 </pre>
-<p>
-make database table
-</p>
-					
+          
 
-					
-					<div class="method-source-code"
-						id="create-table-source">
-<pre>
-    <span class="ruby-comment cmt"># File lib/db/file_info.rb, line 34</span>
-34:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">create_table</span>()
-35:                         <span class="ruby-identifier">ct</span>=<span class="ruby-value str">CREATE TABLE IF NOT EXISTS fileinfo(id TEXT PRIYMARY KEY,name CHAR,path CHAR,size INTEGER,block INTEGER,host CHAR);</span>
-36:                 <span class="ruby-ivar">@db</span>.<span class="ruby-identifier">execute</span> <span class="ruby-identifier">ct</span>
-37:         <span class="ruby-keyword kw">end</span></pre>
-					</div>
-					
-				</div>
+          
+          <div class="method-source-code" id="write_file_info-source">
+            <pre><span class="ruby-comment"># File lib/db/file_info.rb, line 58</span>
+  <span class="ruby-keyword">def</span> <span class="ruby-identifier">write_file_info</span>( <span class="ruby-identifier">row</span> )
+    <span class="ruby-identifier">wfi</span>=<span class="ruby-string">&quot;insert into fileinfo values ( 
+:id, :name, :path, :size, :block, :host)
+&quot;</span>
+    <span class="ruby-ivar">@db</span>.<span class="ruby-identifier">execute</span>( <span class="ruby-identifier">wfi</span>, <span class="ruby-identifier">row</span> )
+  <span class="ruby-keyword">end</span></pre>
+          </div><!-- write_file_info-source -->
+          
+        </div>
 
-				
+        
 
-				
-			</div>
+        
+      </div><!-- write_file_info-method -->
 
-		
-			<div id="get-db-info-method" class="method-detail ">
-				<a name="method-i-get_db_info"></a>
+    
+    </section><!-- public-instance-method-details -->
+  
+  </section><!-- 5Buntitled-5D -->
 
-				<div class="method-heading">
-				
-					<span class="method-name">get_db_info</span><span
-						class="method-args">()</span>
-					<span class="method-click-advice">click to toggle source</span>
-				
-				</div>
-
-				<div class="method-description">
-					
-					
-					
-
-					
-					<div class="method-source-code"
-						id="get-db-info-source">
-<pre>
-    <span class="ruby-comment cmt"># File lib/db/file_info.rb, line 19</span>
-19:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">get_db_info</span>
-20:                 <span class="ruby-ivar">@info</span>[<span class="ruby-value str">'database'</span>]
-21:         <span class="ruby-keyword kw">end</span></pre>
-					</div>
-					
-				</div>
-
-				
-
-				
-			</div>
-
-		
-			<div id="get-file-list-method" class="method-detail ">
-				<a name="method-i-get_file_list"></a>
-
-				<div class="method-heading">
-				
-					<span class="method-name">get_file_list</span><span
-						class="method-args">()</span>
-					<span class="method-click-advice">click to toggle source</span>
-				
-				</div>
-
-				<div class="method-description">
-					
-					
-					
-
-					
-					<div class="method-source-code"
-						id="get-file-list-source">
-<pre>
-    <span class="ruby-comment cmt"># File lib/db/file_info.rb, line 28</span>
-28:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">get_file_list</span>
-29:                 <span class="ruby-identifier">search_db</span>( <span class="ruby-value">:name</span> )
-30:         <span class="ruby-keyword kw">end</span></pre>
-					</div>
-					
-				</div>
-
-				
-
-				
-			</div>
-
-		
-			<div id="is-connected--method" class="method-detail ">
-				<a name="method-i-is_connected%3F"></a>
-
-				<div class="method-heading">
-				
-					<span class="method-name">is_connected?</span><span
-						class="method-args">()</span>
-					<span class="method-click-advice">click to toggle source</span>
-				
-				</div>
-
-				<div class="method-description">
-					
-					
-					
-
-					
-					<div class="method-source-code"
-						id="is-connected--source">
-<pre>
-    <span class="ruby-comment cmt"># File lib/db/file_info.rb, line 23</span>
-23:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">is_connected?</span>
-24:                 <span class="ruby-ivar">@db</span>.<span class="ruby-identifier">closed?</span>
-25:         <span class="ruby-keyword kw">end</span></pre>
-					</div>
-					
-				</div>
-
-				
-				<div class="aliases">
-					Also aliased as: <a href="FileInfo.html#method-i-closed%3F">closed?</a>
-				</div>
-				
-
-				
-			</div>
-
-		
-			<div id="search-db-method" class="method-detail ">
-				<a name="method-i-search_db"></a>
-
-				<div class="method-heading">
-				
-					<span class="method-name">search_db</span><span
-						class="method-args">( keywords )</span>
-					<span class="method-click-advice">click to toggle source</span>
-				
-				</div>
-
-				<div class="method-description">
-					
-					
-					
-
-					
-					<div class="method-source-code"
-						id="search-db-source">
-<pre>
-    <span class="ruby-comment cmt"># File lib/db/file_info.rb, line 48</span>
-48:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">search_db</span>( <span class="ruby-identifier">keywords</span> )
-49:                 <span class="ruby-identifier">sw</span>=<span class="ruby-value str">select #{keywords} from fileinfo;</span>
-50:                 <span class="ruby-ivar">@db</span>.<span class="ruby-identifier">execute</span> <span class="ruby-identifier">sw</span>
-51:         <span class="ruby-keyword kw">end</span></pre>
-					</div>
-					
-				</div>
-
-				
-
-				
-			</div>
-
-		
-			<div id="write-file-info-method" class="method-detail ">
-				<a name="method-i-write_file_info"></a>
-
-				<div class="method-heading">
-				
-					<span class="method-name">write_file_info</span><span
-						class="method-args">( row )</span>
-					<span class="method-click-advice">click to toggle source</span>
-				
-				</div>
-
-				<div class="method-description">
-					
-					<pre>
- write_file_info
-</pre>
-<p>
-write file info in database row = {:id => md5 values, :name => file name,
-:path => file path,
-</p>
-<pre>
-       :block =&gt; block size, :host =&gt; host name }</pre>
-					
-
-					
-					<div class="method-source-code"
-						id="write-file-info-source">
-<pre>
-    <span class="ruby-comment cmt"># File lib/db/file_info.rb, line 59</span>
-59:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">write_file_info</span>( <span class="ruby-identifier">row</span> )
-60:                 <span class="ruby-identifier">wfi</span>=<span class="ruby-value str">insert into fileinfo values ( :id, :name, :path, :size, :block, :host)</span>
-61:                 <span class="ruby-ivar">@db</span>.<span class="ruby-identifier">execute</span>( <span class="ruby-identifier">wfi</span>, <span class="ruby-identifier">row</span> )
-62:         <span class="ruby-keyword kw">end</span></pre>
-					</div>
-					
-				</div>
-
-				
-
-				
-			</div>
-
-		
-		</div>
-	
-
-	</div>
+</div><!-- documentation -->
 
 
-	<div id="rdoc-debugging-section-dump" class="debugging-section">
-	
-		<p>Disabled; run with --debug to generate this.</p>
-	
-	</div>
-
-	<div id="validator-badges">
-		<p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
-		<p><small>Generated with the <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish
-			Rdoc Generator</a> 1.1.6</small>.</p>
-	</div>
-
-</body>
-</html>
+<footer id="validator-badges">
+  <p><a href="http://validator.w3.org/check/referer">[Validate]</a>
+  <p>Generated by <a href="https://github.com/rdoc/rdoc">RDoc</a> 3.12.
+  <p>Generated with the <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish Rdoc Generator</a> 3.
+</footer>
 

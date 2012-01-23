@@ -1,275 +1,273 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!DOCTYPE html>
+
+<html>
 <head>
-	<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
 
-	<title>Class: SyncFiler::Settings</title>
+<title>class SyncFiler::Settings - RDoc Documentation</title>
 
-	<link rel="stylesheet" href="../rdoc.css" type="text/css" media="screen" />
+<link type="text/css" media="screen" href="../rdoc.css" rel="stylesheet">
 
-	<script src="../js/jquery.js" type="text/javascript"
-		charset="utf-8"></script>
-	<script src="../js/thickbox-compressed.js" type="text/javascript"
-		charset="utf-8"></script>
-	<script src="../js/quicksearch.js" type="text/javascript"
-		charset="utf-8"></script>
-	<script src="../js/darkfish.js" type="text/javascript"
-		charset="utf-8"></script>
+<script type="text/javascript">
+  var rdoc_rel_prefix = "../";
+</script>
 
-</head>
-<body class="class">
-
-	<div id="metadata">
-		<div id="home-metadata">
-			<div id="home-section" class="section">
-        <h3 class="section-header">
-          <a href="../index.html">Home</a>
-          <a href="../index.html#classes">Classes</a>
-          <a href="../index.html#methods">Methods</a>
-        </h3>
-			</div>
-		</div>
-
-		<div id="file-metadata">
-			<div id="file-list-section" class="section">
-				<h3 class="section-header">In Files</h3>
-				<div class="section-body">
-					<ul>
-					
-						<li><a href="../lib/settings_rb.html?TB_iframe=true&amp;height=550&amp;width=785"
-							class="thickbox" title="lib/settings.rb">lib/settings.rb</a></li>
-					
-					</ul>
-				</div>
-			</div>
-
-			
-		</div>
-
-		<div id="class-metadata">
-
-			<!-- Parent Class -->
-			
-			<div id="parent-class-section" class="section">
-				<h3 class="section-header">Parent</h3>
-				
-				<p class="link">Object</p>
-				
-			</div>
-			
-
-			<!-- Namespace Contents -->
-			
-
-			<!-- Method Quickref -->
-			
-			<div id="method-list-section" class="section">
-				<h3 class="section-header">Methods</h3>
-				<ul class="link-list">
-					
-					<li><a href="#method-c-read">::read</a></li>
-					
-					<li><a href="#method-c-write_setting_file">::write_setting_file</a></li>
-					
-				</ul>
-			</div>
-			
-
-			<!-- Included Modules -->
-			
-		</div>
-
-		<div id="project-metadata">
-			
-			
-			<div id="fileindex-section" class="section project-section">
-				<h3 class="section-header">Files</h3>
-				<ul>
-				
-					<li class="file"><a href="../LICENSE_txt.html">LICENSE.txt</a></li>
-				
-					<li class="file"><a href="../README.html">README</a></li>
-				
-					<li class="file"><a href="../TODO.html">TODO</a></li>
-				
-				</ul>
-			</div>
-			
-
-			<div id="classindex-section" class="section project-section">
-				<h3 class="section-header">Class Index
-					<span class="search-toggle"><img src="../images/find.png"
-						height="16" width="16" alt="[+]"
-						title="show/hide quicksearch" /></span></h3>
-				<form action="#" method="get" accept-charset="utf-8" class="initially-hidden">
-				<fieldset>
-					<legend>Quicksearch</legend>
-					<input type="text" name="quicksearch" value=""
-						class="quicksearch-field" />
-				</fieldset>
-				</form>
-
-				<ul class="link-list">
-				
-					<li><a href="../SyncFiler.html">SyncFiler</a></li>
-				
-					<li><a href="../SyncFiler/DB.html">SyncFiler::DB</a></li>
-				
-					<li><a href="../SyncFiler/DB/FileInfo.html">SyncFiler::DB::FileInfo</a></li>
-				
-					<li><a href="../SyncFiler/DB/NameInfo.html">SyncFiler::DB::NameInfo</a></li>
-				
-					<li><a href="../SyncFiler/Error.html">SyncFiler::Error</a></li>
-				
-					<li><a href="../SyncFiler/Error/DB.html">SyncFiler::Error::DB</a></li>
-				
-					<li><a href="../SyncFiler/Error/FileSubmission.html">SyncFiler::Error::FileSubmission</a></li>
-				
-					<li><a href="../SyncFiler/Error/Settings.html">SyncFiler::Error::Settings</a></li>
-				
-					<li><a href="../SyncFiler/FileSubmission.html">SyncFiler::FileSubmission</a></li>
-				
-					<li><a href="../SyncFiler/FileSubmission/Client.html">SyncFiler::FileSubmission::Client</a></li>
-				
-					<li><a href="../SyncFiler/FileSubmission/Server.html">SyncFiler::FileSubmission::Server</a></li>
-				
-					<li><a href="../SyncFiler/Settings.html">SyncFiler::Settings</a></li>
-				
-					<li><a href="../TC_FileInfo.html">TC_FileInfo</a></li>
-				
-					<li><a href="../TC_FileSubmissionClient.html">TC_FileSubmissionClient</a></li>
-				
-					<li><a href="../TC_FileSubmissionServer.html">TC_FileSubmissionServer</a></li>
-				
-					<li><a href="../TC_Name.html">TC_Name</a></li>
-				
-					<li><a href="../TC_Settings.html">TC_Settings</a></li>
-				
-				</ul>
-				<div id="no-class-search-results" style="display: none;">No matching classes.</div>
-			</div>
-
-			
-		</div>
-	</div>
-
-	<div id="documentation">
-		<h1 class="class">SyncFiler::Settings</h1>
-
-		<div id="description">
-			
-		</div>
-
-		<!-- Constants -->
-		
-
-		<!-- Attributes -->
-		
-
-		<!-- Methods -->
-		
-		<div id="public-class-method-details" class="method-section section">
-			<h3 class="section-header">Public Class Methods</h3>
-
-		
-			<div id="read-method" class="method-detail ">
-				<a name="method-c-read"></a>
-
-				<div class="method-heading">
-				
-					<span class="method-name">read</span><span
-						class="method-args">(file="~/.syncfiler.d/settings.yml" )</span>
-					<span class="method-click-advice">click to toggle source</span>
-				
-				</div>
-
-				<div class="method-description">
-					
-					
-					
-
-					
-					<div class="method-source-code"
-						id="read-source">
-<pre>
-   <span class="ruby-comment cmt"># File lib/settings.rb, line 6</span>
-6:         <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">read</span>(<span class="ruby-identifier">file</span>=<span class="ruby-value str">&quot;~/.syncfiler.d/settings.yml&quot;</span> )
-7:                 <span class="ruby-identifier">path</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">expand_path</span> <span class="ruby-identifier">file</span>
-8:                 <span class="ruby-identifier">config</span> = <span class="ruby-constant">YAML</span>.<span class="ruby-identifier">load</span>(<span class="ruby-constant">File</span>.<span class="ruby-identifier">open</span>(<span class="ruby-identifier">path</span>).<span class="ruby-identifier">read</span>)
-9:         <span class="ruby-keyword kw">end</span></pre>
-					</div>
-					
-				</div>
-
-				
-
-				
-			</div>
-
-		
-			<div id="write-setting-file-method" class="method-detail ">
-				<a name="method-c-write_setting_file"></a>
-
-				<div class="method-heading">
-				
-					<span class="method-name">write_setting_file</span><span
-						class="method-args">( type, hash, path='~/.syncfiler.d/settings.yml' )</span>
-					<span class="method-click-advice">click to toggle source</span>
-				
-				</div>
-
-				<div class="method-description">
-					
-					
-					
-
-					
-					<div class="method-source-code"
-						id="write-setting-file-source">
-<pre>
-    <span class="ruby-comment cmt"># File lib/settings.rb, line 11</span>
-11:         <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">write_setting_file</span>( <span class="ruby-identifier">type</span>, <span class="ruby-identifier">hash</span>,
-12:                                                                                                                          <span class="ruby-identifier">path</span>=<span class="ruby-value str">'~/.syncfiler.d/settings.yml'</span> )
-13:                 <span class="ruby-identifier">pt</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">expand_path</span>(<span class="ruby-identifier">path</span>)
-14:                 <span class="ruby-identifier">data</span> = <span class="ruby-constant">Hash</span>.<span class="ruby-identifier">new</span>
-15:                 <span class="ruby-identifier">data</span> = <span class="ruby-identifier">read</span>(<span class="ruby-identifier">pt</span>) <span class="ruby-keyword kw">if</span> <span class="ruby-constant">File</span>.<span class="ruby-identifier">exist?</span> <span class="ruby-identifier">pt</span>
-16:                 <span class="ruby-identifier">data</span>[<span class="ruby-identifier">type</span>] = <span class="ruby-identifier">hash</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">data</span>[<span class="ruby-identifier">type</span>]
-17:                 <span class="ruby-identifier">fw</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">open</span>(<span class="ruby-identifier">pt</span>, <span class="ruby-value str">'w'</span>)
-18:                 <span class="ruby-identifier">yml</span> = <span class="ruby-constant">YAML</span>.<span class="ruby-identifier">dump</span> <span class="ruby-identifier">data</span>
-19:                 <span class="ruby-identifier">fw</span>.<span class="ruby-identifier">write</span> <span class="ruby-identifier">yml</span>
-20:                 <span class="ruby-identifier">fw</span>.<span class="ruby-identifier">close</span>
-21:                 <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">data</span>
-22:         <span class="ruby-keyword kw">end</span></pre>
-					</div>
-					
-				</div>
-
-				
-
-				
-			</div>
-
-		
-		</div>
-	
-
-	</div>
+<script type="text/javascript" charset="utf-8" src="../js/jquery.js"></script>
+<script type="text/javascript" charset="utf-8" src="../js/navigation.js"></script>
+<script type="text/javascript" charset="utf-8" src="../js/search_index.js"></script>
+<script type="text/javascript" charset="utf-8" src="../js/search.js"></script>
+<script type="text/javascript" charset="utf-8" src="../js/searcher.js"></script>
+<script type="text/javascript" charset="utf-8" src="../js/darkfish.js"></script>
 
 
-	<div id="rdoc-debugging-section-dump" class="debugging-section">
-	
-		<p>Disabled; run with --debug to generate this.</p>
-	
-	</div>
+<body id="top" class="class">
+<nav id="metadata">
+  <nav id="home-section" class="section">
+  <h3 class="section-header">
+    <a href="../index.html">Home</a>
+    <a href="../table_of_contents.html#classes">Classes</a>
+    <a href="../table_of_contents.html#methods">Methods</a>
+  </h3>
+</nav>
 
-	<div id="validator-badges">
-		<p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
-		<p><small>Generated with the <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish
-			Rdoc Generator</a> 1.1.6</small>.</p>
-	</div>
 
-</body>
-</html>
+  <nav id="search-section" class="section project-section" class="initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <h3 class="section-header">
+      <input type="text" name="search" placeholder="Search" id="search-field"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </h3>
+  </form>
+
+  <ul id="search-results" class="initially-hidden"></ul>
+</nav>
+
+
+  <div id="file-metadata">
+    <nav id="file-list-section" class="section">
+  <h3 class="section-header">Defined In</h3>
+  <ul>
+    <li>lib/settings.rb
+  </ul>
+</nav>
+
+    
+  </div>
+
+  <div id="class-metadata">
+    
+    <nav id="parent-class-section" class="section">
+  <h3 class="section-header">Parent</h3>
+  
+  <p class="link">Object
+  
+</nav>
+
+    <!-- Included Modules -->
+<nav id="includes-section" class="section">
+  <h3 class="section-header">Included Modules</h3>
+
+  <ul class="link-list">
+  
+  
+    <li><a class="include" href="../SyncFiler.html">SyncFiler</a>
+  
+  
+  </ul>
+</nav>
+
+    <!-- Method Quickref -->
+<nav id="method-list-section" class="section">
+  <h3 class="section-header">Methods</h3>
+
+  <ul class="link-list">
+    
+    <li><a href="#method-c-exist-3F">::exist?</a>
+    
+    <li><a href="#method-c-read">::read</a>
+    
+    <li><a href="#method-c-write_setting_file">::write_setting_file</a>
+    
+  </ul>
+</nav>
+
+  </div>
+
+  <div id="project-metadata">
+    
+    <nav id="classindex-section" class="section project-section">
+  <h3 class="section-header">Class and Module Index</h3>
+
+  <ul class="link-list">
+  
+    <li><a href="../SyncFiler.html">SyncFiler</a>
+  
+    <li><a href="../SyncFiler/Client.html">SyncFiler::Client</a>
+  
+    <li><a href="../SyncFiler/DB.html">SyncFiler::DB</a>
+  
+    <li><a href="../SyncFiler/DB/FileInfo.html">SyncFiler::DB::FileInfo</a>
+  
+    <li><a href="../SyncFiler/DB/NameInfo.html">SyncFiler::DB::NameInfo</a>
+  
+    <li><a href="../SyncFiler/Error.html">SyncFiler::Error</a>
+  
+    <li><a href="../SyncFiler/Error/Client.html">SyncFiler::Error::Client</a>
+  
+    <li><a href="../SyncFiler/Error/DB.html">SyncFiler::Error::DB</a>
+  
+    <li><a href="../SyncFiler/Error/Server.html">SyncFiler::Error::Server</a>
+  
+    <li><a href="../SyncFiler/Error/Settings.html">SyncFiler::Error::Settings</a>
+  
+    <li><a href="../SyncFiler/Server.html">SyncFiler::Server</a>
+  
+    <li><a href="../SyncFiler/Settings.html">SyncFiler::Settings</a>
+  
+  </ul>
+</nav>
+
+  </div>
+</nav>
+
+<div id="documentation">
+  <h1 class="class">class SyncFiler::Settings</h1>
+
+  <div id="description" class="description">
+    
+<p>module <a href="../SyncFiler.html">SyncFiler</a></p>
+
+  </div><!-- description -->
+
+  
+  
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+
+    
+
+    <!-- Methods -->
+    
+     <section id="public-class-5Buntitled-5D-method-details" class="method-section section">
+      <h3 class="section-header">Public Class Methods</h3>
+
+    
+      <div id="method-c-exist-3F" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">exist?</span><span
+            class="method-args">(file="~/.syncfiler.d/settings.yml")</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="exist-3F-source">
+            <pre><span class="ruby-comment"># File lib/settings.rb, line 23</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">exist?</span>(<span class="ruby-identifier">file</span>=<span class="ruby-string">&quot;~/.syncfiler.d/settings.yml&quot;</span>)
+  <span class="ruby-identifier">f</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">expand_path</span> <span class="ruby-identifier">file</span>
+  <span class="ruby-identifier">path</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">dirname</span>(<span class="ruby-identifier">f</span>)
+  <span class="ruby-constant">Dir</span>.<span class="ruby-identifier">mkdir</span> <span class="ruby-identifier">path</span> <span class="ruby-keyword">unless</span> <span class="ruby-constant">Dir</span>.<span class="ruby-identifier">exist?</span> <span class="ruby-identifier">path</span>
+  <span class="ruby-constant">File</span>.<span class="ruby-identifier">exist?</span> <span class="ruby-identifier">f</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- exist-3F-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- exist-3F-method -->
+
+    
+      <div id="method-c-read" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">read</span><span
+            class="method-args">(file="~/.syncfiler.d/settings.yml" )</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="read-source">
+            <pre><span class="ruby-comment"># File lib/settings.rb, line 7</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">read</span>(<span class="ruby-identifier">file</span>=<span class="ruby-string">&quot;~/.syncfiler.d/settings.yml&quot;</span> )
+  <span class="ruby-identifier">path</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">expand_path</span> <span class="ruby-identifier">file</span>
+  <span class="ruby-identifier">config</span> = <span class="ruby-constant">YAML</span>.<span class="ruby-identifier">load</span>(<span class="ruby-constant">File</span>.<span class="ruby-identifier">open</span>(<span class="ruby-identifier">path</span>).<span class="ruby-identifier">read</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- read-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- read-method -->
+
+    
+      <div id="method-c-write_setting_file" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">write_setting_file</span><span
+            class="method-args">( type, hash, path='~/.syncfiler.d/settings.yml' )</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="write_setting_file-source">
+            <pre><span class="ruby-comment"># File lib/settings.rb, line 12</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">write_setting_file</span>( <span class="ruby-identifier">type</span>, <span class="ruby-identifier">hash</span>,
+                             <span class="ruby-identifier">path</span>=<span class="ruby-string">'~/.syncfiler.d/settings.yml'</span> )
+  <span class="ruby-identifier">pt</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">expand_path</span>(<span class="ruby-identifier">path</span>)
+  <span class="ruby-identifier">data</span> = <span class="ruby-constant">Hash</span>.<span class="ruby-identifier">new</span>
+  <span class="ruby-identifier">fw</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">open</span>(<span class="ruby-identifier">pt</span>, <span class="ruby-string">'w'</span>)
+  <span class="ruby-identifier">yml</span> = <span class="ruby-constant">YAML</span>.<span class="ruby-identifier">dump</span> <span class="ruby-identifier">data</span>
+  <span class="ruby-identifier">fw</span>.<span class="ruby-identifier">write</span> <span class="ruby-identifier">yml</span>
+  <span class="ruby-identifier">fw</span>.<span class="ruby-identifier">close</span>
+  <span class="ruby-keyword">return</span> <span class="ruby-identifier">data</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- write_setting_file-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- write_setting_file-method -->
+
+    
+    </section><!-- public-class-method-details -->
+  
+  </section><!-- 5Buntitled-5D -->
+
+</div><!-- documentation -->
+
+
+<footer id="validator-badges">
+  <p><a href="http://validator.w3.org/check/referer">[Validate]</a>
+  <p>Generated by <a href="https://github.com/rdoc/rdoc">RDoc</a> 3.12.
+  <p>Generated with the <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish Rdoc Generator</a> 3.
+</footer>
 
